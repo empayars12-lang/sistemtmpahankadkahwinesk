@@ -107,7 +107,7 @@
 
                     <div>
                         <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Alamat Penuh Tempat Majlis</label>
-                        <textarea id="c_alamat" rows="2" required placeholder="Cth: LOT 1469, KAMPUNG TUNJONG, JALAN KUALA KRAI, 16010 KOTA BHARU KELANTAN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <textarea id="c_alamat" rows="2" required placeholder="Cth: LOT 1469, KAMPUNG TUNJONG, JALAN KUALA KRAI..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
                     </div>
 
                     <div>
@@ -174,7 +174,7 @@
                         </div>
                     </div>
 
-                    <!-- Langkah 3: Editor 2D Pro Properties (Muncul bila klik mana-mana teks di Depan atau Belakang) -->
+                    <!-- Langkah 3: Editor 2D Pro Properties (Muncul bila klik mana-mana teks) -->
                     <div id="editorProPanel" class="border-t pt-3 space-y-3 bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 hidden">
                         <div class="flex justify-between items-center">
                             <span class="text-xs font-bold text-indigo-900 uppercase tracking-wide">✏️ Editor Objek Terpilih</span>
@@ -182,7 +182,7 @@
                         </div>
                         
                         <div>
-                            <label class="text-[11px] font-semibold text-slate-600 block mb-1">Sunting Teks (Atau Double-Click di Kanvas)</label>
+                            <label class="text-[11px] font-semibold text-slate-600 block mb-1">Sunting Teks</label>
                             <textarea id="propText" rows="2" oninput="updateObjProp('text', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs outline-none"></textarea>
                         </div>
 
@@ -244,14 +244,13 @@
                     </div>
                 </div>
 
-                <!-- PANEL KANAN: PAPARAN 2 MUKA SEBELAH-MENYEBELAH (UI ASAL) -->
+                <!-- PANEL KANAN: PAPARAN 2 MUKA SEBELAH-MENYEBELAH -->
                 <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col items-center justify-center">
                     <div class="text-center mb-3">
                         <h3 class="text-sm font-bold text-slate-800">Paparan 2 Muka Kad (Klik & Seret Teks Untuk Ubahsuai)</h3>
                         <p class="text-[11px] text-slate-400">Sebelah Kiri: Muka Depan | Sebelah Kanan: Muka Belakang</p>
                     </div>
 
-                    <!-- Bekas 2 Kanvas Sebelah-Menyebelah -->
                     <div class="flex flex-wrap xl:flex-nowrap justify-center items-start gap-6 w-full overflow-x-auto py-2">
                         <!-- MUKA DEPAN -->
                         <div class="flex flex-col items-center">
@@ -313,7 +312,6 @@
             fon4: "4) AIMAN - 011 63686971"
         };
 
-        // Fungsi Pilih Objek pada Mana-mana Kanvas
         function setupCanvasSelection(canvasInstance, sideName) {
             canvasInstance.on('selection:created', (e) => handleSelect(canvasInstance, sideName, e.selected[0]));
             canvasInstance.on('selection:updated', (e) => handleSelect(canvasInstance, sideName, e.selected[0]));
@@ -328,7 +326,6 @@
         setupCanvasSelection(backCanvas, 'Muka Belakang');
 
         function handleSelect(canvasInstance, sideName, obj) {
-            // Nyahpilih objek di kanvas sebelah supaya fokus pada satu objek sahaja
             if (canvasInstance === frontCanvas) backCanvas.discardActiveObject().renderAll();
             if (canvasInstance === backCanvas) frontCanvas.discardActiveObject().renderAll();
 
@@ -344,7 +341,6 @@
             }
         }
 
-        // Kemaskini Sifat Objek Terpilih
         function updateObjProp(prop, val) {
             const obj = activeCanvas.getActiveObject();
             if (obj) {
@@ -386,7 +382,6 @@
             }
         }
 
-        // Helper Tambah Teks Terpusat Automatik
         function addCenteredText(canvasTarget, textStr, topPos, options = {}) {
             const textObj = new fabric.IText(textStr, {
                 top: topPos,
@@ -403,9 +398,7 @@
             return textObj;
         }
 
-        // Fungsi Utama: AUTO-SUSUN KE 2 MUKA KAD (PERINGKAT PERTAMA)
         function populateBothCanvases(data) {
-            // Simpan background sedia ada sebelum bersihkan objek teks
             const bgFront = frontCanvas.backgroundImage;
             const bgBack = backCanvas.backgroundImage;
 
@@ -416,7 +409,7 @@
             if (bgFront) frontCanvas.setBackgroundImage(bgFront, frontCanvas.renderAll.bind(frontCanvas));
             if (bgBack) backCanvas.setBackgroundImage(bgBack, backCanvas.renderAll.bind(backCanvas));
 
-            // --- SUSUN ATUR MUKA DEPAN ---
+            // --- MUKA DEPAN ---
             addCenteredText(frontCanvas, data.tajuk, 65, { fontSize: 18, fontFamily: 'Great Vibes', fill: '#1e293b' });
             
             const parts = data.nick.split('&');
@@ -428,7 +421,7 @@
             addCenteredText(frontCanvas, `${data.tarikhM}\n${data.tarikhH}`, 380, { fontSize: 12, fontFamily: 'Playfair Display', fontWeight: 'bold' });
             addCenteredText(frontCanvas, "“Dan kami telah menciptakan kamu berpasang-pasangan.”\n{QS: Surah An-Naba ayat 8}", 465, { fontSize: 9, fontFamily: 'Playfair Display', fontStyle: 'italic', fill: '#334155' });
 
-            // --- SUSUN ATUR MUKA BELAKANG ---
+            // --- MUKA BELAKANG ---
             let yPos = 25;
             if (data.jawi === "YA") {
                 addCenteredText(backCanvas, "بِسۡـــــــــمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـــــــيمِ", yPos, { fontSize: 15, fontFamily: 'Amiri', fontWeight: 'bold' });
@@ -457,7 +450,6 @@
             addCenteredText(backCanvas, `${data.alamat}\nAturcara Majlis: ${data.masa}`, yPos, { fontSize: 8.5, fontWeight: '600' });
             yPos += 45;
 
-            // Senarai No Telefon di bahagian bawah kanan
             const fonBlock = `NO FON DIHUBUNGI:\n${data.fon1}\n${data.fon2}\n${data.fon3}\n${data.fon4}`;
             const fonObj = new fabric.IText(fonBlock, {
                 left: 195,
@@ -474,7 +466,7 @@
             backCanvas.renderAll();
         }
 
-        // Ekstrak Data dari Teks WhatsApp Pelanggan
+        // Fungsi Auto-Susun Fleksibel WhatsApp
         function autoLayoutFromWhatsApp() {
             const raw = document.getElementById('d_input_data').value;
             if (!raw.trim()) {
@@ -482,36 +474,46 @@
                 return;
             }
 
-            const getVal = (label) => {
-                const regex = new RegExp(`\\*?${label}:\\*?\\s*(.*)`, 'i');
-                const match = raw.match(regex);
-                return match ? match[1].trim() : '';
+            const findValue = (keywords) => {
+                for (let kw of keywords) {
+                    const regex = new RegExp(`\\*?${kw}:\\*?\\s*(.+)`, 'i');
+                    const match = raw.match(regex);
+                    if (match && match[1]) return match[1].trim();
+                }
+                return '';
             };
 
-            currentOrderData.tajuk = getVal('Tajuk') || currentOrderData.tajuk;
-            currentOrderData.jawi = getVal('Tulisan Jawi') || 'YA';
-            currentOrderData.ayah = getVal('Ayah') || currentOrderData.ayah;
-            currentOrderData.ibu = getVal('Ibu') || currentOrderData.ibu;
-            currentOrderData.p1 = getVal('Pengantin 1') || currentOrderData.p1;
-            currentOrderData.p2 = getVal('Pengantin 2') || currentOrderData.p2;
-            currentOrderData.nick = getVal('Nickname Depan') || currentOrderData.nick;
-            currentOrderData.tarikhM = getVal('Tarikh Masihi') || currentOrderData.tarikhM;
-            currentOrderData.tarikhH = getVal('Tarikh Hijrah') || currentOrderData.tarikhH;
-            currentOrderData.masa = getVal('Masa') || currentOrderData.masa;
-            currentOrderData.alamat = getVal('Alamat') || currentOrderData.alamat;
-            currentOrderData.map = getVal('Lokasi Maps') || currentOrderData.map;
+            currentOrderData.tajuk = findValue(['Tajuk']) || currentOrderData.tajuk;
+            currentOrderData.jawi = findValue(['Tulisan Jawi']) || 'YA';
+            currentOrderData.ayah = findValue(['Ayah']) || currentOrderData.ayah;
+            currentOrderData.ibu = findValue(['Ibu']) || currentOrderData.ibu;
+            
+            let p1 = findValue(['Pengantin 1']);
+            let p2 = findValue(['Pengantin 2']);
+            if (p1) currentOrderData.p1 = p1.toUpperCase();
+            if (p2) currentOrderData.p2 = p2.toUpperCase();
+
+            currentOrderData.nick = findValue(['Nickname Depan', 'Nickname']) || currentOrderData.nick;
+            currentOrderData.tarikhM = findValue(['Tarikh Masihi', 'Tarikh']) || currentOrderData.tarikhM;
+            currentOrderData.tarikhH = findValue(['Tarikh Hijrah']) || currentOrderData.tarikhH;
+            currentOrderData.masa = findValue(['Masa']) || currentOrderData.masa;
+            currentOrderData.alamat = findValue(['Alamat']) || currentOrderData.alamat;
+            currentOrderData.map = findValue(['Lokasi Maps', 'Maps']) || currentOrderData.map;
 
             const lines = raw.split('\n');
-            const fons = lines.filter(l => /^[1-4]\)/.test(l.trim()));
-            if (fons[0]) currentOrderData.fon1 = fons[0].trim();
-            if (fons[1]) currentOrderData.fon2 = fons[1].trim();
-            if (fons[2]) currentOrderData.fon3 = fons[2].trim();
-            if (fons[3]) currentOrderData.fon4 = fons[3].trim();
+            let phoneLines = lines.filter(l => /^[0-9+()\-\s]{8,}/.test(l.trim()) && !l.includes('http') && !l.toLowerCase().includes('lokasi') && !l.toLowerCase().includes('tarikh'));
+            
+            if (phoneLines.length > 0) {
+                if (phoneLines[0]) currentOrderData.fon1 = `1) ${phoneLines[0].trim()}`;
+                if (phoneLines[1]) currentOrderData.fon2 = `2) ${phoneLines[1].trim()}`;
+                if (phoneLines[2]) currentOrderData.fon3 = `3) ${phoneLines[2].trim()}`;
+                if (phoneLines[3]) currentOrderData.fon4 = `4) ${phoneLines[3].trim()}`;
+            }
 
             populateBothCanvases(currentOrderData);
+            alert('Berjaya! Data WhatsApp telah auto-susun ke 2 muka kad.');
         }
 
-        // Muat Naik Background untuk Depan atau Belakang
         function loadBg(event, targetCanvas) {
             const file = event.target.files[0];
             if (!file) return;
@@ -527,7 +529,6 @@
             reader.readAsDataURL(file);
         }
 
-        // Tambah Gambar Overlay (Peta / QR Code)
         function addOverlayImage(event, targetCanvas) {
             const file = event.target.files[0];
             if (!file) return;
@@ -548,7 +549,6 @@
             targetCanvas.setActiveObject(t);
         }
 
-        // Tukar Semua Teks ke Hitam Sahaja (Untuk Kad Bajet)
         function setMonochrome(isBlackOnly) {
             const color = isBlackOnly ? '#000000' : '#1e293b';
             [frontCanvas, backCanvas].forEach(c => {
@@ -559,7 +559,6 @@
             });
         }
 
-        // Muat Turun Preview Gabungan Sebelah-Menyebelah (Seperti Gambar Contoh Anda)
         function exportCombinedPreview() {
             const tempCanvas = document.createElement('canvas');
             const gap = 20;
@@ -587,7 +586,6 @@
             };
         }
 
-        // Salin Ayat Jemputan Rasmi WhatsApp
         function copyFinalWhatsAppMessage() {
             const names = currentOrderData.nick.split('&');
             const n1 = names[0] ? names[0].trim() : 'PENGANTIN 1';
@@ -611,7 +609,6 @@
             });
         }
 
-        // Hantar Borang Pelanggan ke WhatsApp
         function submitOrder(e) {
             e.preventDefault();
             const waAdmin = localStorage.getItem('esk_wa') || '60123456789';
@@ -651,7 +648,6 @@
             if (localStorage.getItem('esk_wa')) {
                 document.getElementById('setting_wa').value = localStorage.getItem('esk_wa');
             }
-            // Paparkan susun atur sampel awal secara automatik
             populateBothCanvases(currentOrderData);
         };
     </script>
