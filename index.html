@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Tempahan Kad ESKPRINT - Studio Pro 2D</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Fabric.js untuk Editor 2D Pro -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/531/fabric.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Great+Vibes&family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Amiri:wght@400;700&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .canvas-container { margin: 0 auto !important; }
+        canvas { cursor: move; touch-action: none; }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800">
@@ -21,7 +18,7 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
             <div class="flex items-center space-x-2">
                 <span class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-bold text-lg tracking-wider">ESKPRINT</span>
-                <span class="text-sm text-slate-300 font-medium hidden sm:inline">Sistem Tempahan & Studio Kad 2D</span>
+                <span class="text-sm text-slate-300 font-medium hidden sm:inline">Sistem Tempahan & Studio Kad 2D (300 DPI)</span>
             </div>
             <nav class="flex space-x-1 sm:space-x-2 mt-2 sm:mt-0">
                 <button onclick="switchTab('client')" id="btn-client" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:bg-slate-800 transition">Halaman Pelanggan</button>
@@ -33,7 +30,7 @@
 
     <main class="max-w-[1400px] mx-auto p-4 sm:p-6">
 
-        <!-- ================= HALAMAN 1: PELANGGAN (MOBILE-FIRST) ================= -->
+        <!-- ================= HALAMAN 1: PELANGGAN ================= -->
         <section id="tab-client" class="hidden space-y-6">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-2xl mx-auto">
                 <div class="text-center mb-6">
@@ -116,7 +113,7 @@
                     </div>
 
                     <div class="border-t border-slate-200 pt-4">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-3">Senarai 4 No Telefon Dihubungi</label>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-3">Senarai No Telefon Dihubungi</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <input type="text" id="c_fon1" placeholder="1) ADNAN (POK NAN) - 012 9550420" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
                             <input type="text" id="c_fon2" placeholder="2) RAHAYA - 017 5192962" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
@@ -132,113 +129,120 @@
             </div>
         </section>
 
-        <!-- ================= HALAMAN 2: STUDIO DESIGNER (UI ASAL 2-MUKA + EDITOR 2D PRO) ================= -->
+        <!-- ================= HALAMAN 2: STUDIO DESIGNER (2 MUKA + EDITOR 2D PRO) ================= -->
         <section id="tab-designer" class="space-y-4">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
                 
-                <!-- PANEL KIRI: KAWALAN DATA & EDITOR 2D PRO -->
+                <!-- PANEL KIRI: KAWALAN -->
                 <div class="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 space-y-4 max-h-[88vh] overflow-y-auto">
                     <div class="flex items-center justify-between border-b pb-2">
                         <h2 class="text-base font-bold text-slate-900">Kawalan Studio 2D</h2>
-                        <span class="text-[11px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-semibold">Auto + Edit</span>
+                        <span class="text-[11px] bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded font-semibold">300 DPI Ready</span>
                     </div>
 
-                    <!-- Langkah 1: Tampal Data & Auto Letak -->
+                    <!-- 1. Tampal Mesej WhatsApp -->
                     <div class="space-y-2">
                         <label class="block text-xs font-bold text-slate-700">1. Tampal Mesej WhatsApp Pelanggan</label>
                         <textarea id="d_input_data" rows="3" placeholder="Tampal mesej tempahan dari WhatsApp di sini..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2 text-xs outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-                        <button onclick="autoLayoutFromWhatsApp()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow-sm">
+                        <button type="button" onclick="autoLayoutFromWhatsApp()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow-sm cursor-pointer">
                             ⚡ Auto-Susun ke 2 Muka Kad
                         </button>
                     </div>
 
-                    <!-- Langkah 2: Upload Background Depan & Belakang -->
+                    <!-- 2. Muat Naik Background -->
                     <div class="border-t pt-3 space-y-2.5">
                         <label class="block text-xs font-bold text-slate-700">2. Muat Naik Template Kosong</label>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <span class="text-[11px] text-slate-500 block mb-1">Muka Depan</span>
-                                <input type="file" accept="image/*" onchange="loadBg(event, frontCanvas)" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                                <input type="file" accept="image/*" onchange="handleBgUpload(event, 'front')" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer">
                             </div>
                             <div>
                                 <span class="text-[11px] text-slate-500 block mb-1">Muka Belakang</span>
-                                <input type="file" accept="image/*" onchange="loadBg(event, backCanvas)" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                                <input type="file" accept="image/*" onchange="handleBgUpload(event, 'back')" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer">
                             </div>
                         </div>
                         <div class="flex items-center justify-between pt-1">
                             <span class="text-xs text-slate-600">Mod Cetakan:</span>
                             <div class="flex space-x-1">
-                                <button onclick="setMonochrome(false)" class="px-2.5 py-1 text-[11px] rounded bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200">Full Color</button>
-                                <button onclick="setMonochrome(true)" class="px-2.5 py-1 text-[11px] rounded bg-slate-800 text-white font-semibold">Bajet (Hitam)</button>
+                                <button type="button" onclick="setMonochrome(false)" class="px-2.5 py-1 text-[11px] rounded bg-indigo-50 text-indigo-700 font-semibold border border-indigo-200">Full Color</button>
+                                <button type="button" onclick="setMonochrome(true)" class="px-2.5 py-1 text-[11px] rounded bg-slate-800 text-white font-semibold">Bajet (Hitam)</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Langkah 3: Editor 2D Pro Properties (Muncul bila klik mana-mana teks) -->
-                    <div id="editorProPanel" class="border-t pt-3 space-y-3 bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 hidden">
+                    <!-- 3. Editor 2D Pro Properties -->
+                    <div id="editorProPanel" class="border-t pt-3 space-y-3 bg-indigo-50/80 p-3.5 rounded-xl border border-indigo-200 hidden">
                         <div class="flex justify-between items-center">
                             <span class="text-xs font-bold text-indigo-900 uppercase tracking-wide">✏️ Editor Objek Terpilih</span>
                             <span id="activeSideBadge" class="text-[10px] bg-indigo-600 text-white px-2 py-0.5 rounded-full font-semibold">Depan</span>
                         </div>
                         
-                        <div>
-                            <label class="text-[11px] font-semibold text-slate-600 block mb-1">Sunting Teks</label>
-                            <textarea id="propText" rows="2" oninput="updateObjProp('text', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs outline-none"></textarea>
+                        <div id="textEditControls" class="space-y-2.5">
+                            <div>
+                                <label class="text-[11px] font-semibold text-slate-600 block mb-1">Sunting Teks</label>
+                                <textarea id="propText" rows="2" oninput="updateSelectedProp('text', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs outline-none"></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="text-[11px] font-semibold text-slate-600 block mb-1">Jenis Font</label>
+                                    <select id="propFont" onchange="updateSelectedProp('fontFamily', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none">
+                                        <option value="Plus Jakarta Sans">Sans Moden</option>
+                                        <option value="Cinzel">Cinzel (Elegan)</option>
+                                        <option value="Playfair Display">Playfair (Klasik)</option>
+                                        <option value="Great Vibes">Great Vibes (Berangkai)</option>
+                                        <option value="Amiri">Amiri (Jawi / Arab)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="text-[11px] font-semibold text-slate-600 block mb-1">Saiz Font</label>
+                                    <input type="number" id="propSize" min="6" max="150" oninput="updateSelectedProp('fontSize', parseInt(this.value))" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs outline-none">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-2 items-center pt-1">
+                                <div>
+                                    <label class="text-[11px] font-semibold text-slate-600 block mb-1">Warna</label>
+                                    <input type="color" id="propColor" oninput="updateSelectedProp('fill', this.value)" class="w-full h-8 bg-white border border-slate-300 rounded-lg cursor-pointer">
+                                </div>
+                                <div class="col-span-2 flex space-x-1 pt-4">
+                                    <button type="button" onclick="toggleSelectedStyle('bold')" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-xs font-bold">B</button>
+                                    <button type="button" onclick="toggleSelectedStyle('italic')" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-xs italic font-serif">I</button>
+                                    <button type="button" onclick="centerSelectedH()" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-[11px] font-semibold">Tengah</button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="text-[11px] font-semibold text-slate-600 block mb-1">Jenis Font</label>
-                                <select id="propFont" onchange="updateObjProp('fontFamily', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none">
-                                    <option value="Plus Jakarta Sans">Sans Moden</option>
-                                    <option value="Cinzel">Cinzel (Elegan)</option>
-                                    <option value="Playfair Display">Playfair (Klasik)</option>
-                                    <option value="Great Vibes">Great Vibes (Berangkai)</option>
-                                    <option value="Amiri">Amiri (Jawi / Arab)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="text-[11px] font-semibold text-slate-600 block mb-1">Saiz Font</label>
-                                <input type="number" id="propSize" min="6" max="120" oninput="updateObjProp('fontSize', parseInt(this.value))" class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs outline-none">
-                            </div>
+                        <div id="imageEditControls" class="hidden space-y-2">
+                            <label class="text-[11px] font-semibold text-slate-600 block">Saiz Gambar Peta / QR (Lebar px)</label>
+                            <input type="range" id="propImgWidth" min="40" max="320" oninput="updateSelectedImageSize(parseInt(this.value))" class="w-full">
                         </div>
 
-                        <div class="grid grid-cols-3 gap-2 items-center pt-1">
-                            <div>
-                                <label class="text-[11px] font-semibold text-slate-600 block mb-1">Warna</label>
-                                <input type="color" id="propColor" oninput="updateObjProp('fill', this.value)" class="w-full h-8 bg-white border border-slate-300 rounded-lg cursor-pointer">
-                            </div>
-                            <div class="col-span-2 flex space-x-1 pt-4">
-                                <button onclick="toggleBold()" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-xs font-bold">B</button>
-                                <button onclick="toggleItalic()" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-xs italic font-serif">I</button>
-                                <button onclick="centerHorizontal()" class="flex-1 bg-white border border-slate-300 hover:bg-slate-100 py-1.5 rounded-lg text-[11px] font-semibold" title="Tengahkan Teks">Tengah</button>
-                            </div>
-                        </div>
-
-                        <button onclick="deleteActiveObj()" class="w-full bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-semibold py-1.5 rounded-lg transition">
-                            Padam Teks Ini
+                        <button type="button" onclick="deleteSelected()" class="w-full bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-semibold py-1.5 rounded-lg transition">
+                            Padam Objek Ini
                         </button>
                     </div>
 
-                    <!-- Tambah Teks Manual & Upload Peta/QR -->
+                    <!-- 4. Tambah Elemen Manual -->
                     <div class="border-t pt-3 space-y-2">
                         <label class="block text-xs font-bold text-slate-700">3. Tambah Elemen Tambahan</label>
                         <div class="grid grid-cols-2 gap-2">
-                            <button onclick="addManualText(frontCanvas, 'Teks Depan')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold py-2 rounded-lg">+ Teks Depan</button>
-                            <button onclick="addManualText(backCanvas, 'Teks Belakang')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold py-2 rounded-lg">+ Teks Belakang</button>
+                            <button type="button" onclick="addManualItem('front', 'Teks Baru')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold py-2 rounded-lg">+ Teks Depan</button>
+                            <button type="button" onclick="addManualItem('back', 'Teks Baru')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold py-2 rounded-lg">+ Teks Belakang</button>
                         </div>
                         <div class="pt-1">
                             <span class="text-[11px] text-slate-500 block mb-1">Masukkan Gambar Peta / QR Code ke Belakang:</span>
-                            <input type="file" accept="image/*" onchange="addOverlayImage(event, backCanvas)" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-emerald-50 file:text-emerald-700">
+                            <input type="file" accept="image/*" onchange="handleOverlayUpload(event)" class="text-[11px] w-full text-slate-500 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:font-semibold file:bg-emerald-50 file:text-emerald-700 cursor-pointer">
                         </div>
                     </div>
 
-                    <!-- Export & Mesej WhatsApp Akhir -->
+                    <!-- 5. Export & Mesej WhatsApp -->
                     <div class="border-t pt-3 space-y-2">
-                        <button onclick="exportCombinedPreview()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow">
-                            📥 Muat Turun Preview (Depan & Belakang)
+                        <button type="button" onclick="export300DPIPreview()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow cursor-pointer">
+                            📥 Muat Turun Preview 300 DPI (Depan & Belakang)
                         </button>
-                        <button onclick="copyFinalWhatsAppMessage()" class="w-full bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-2.5 rounded-xl transition">
+                        <button type="button" onclick="copyFinalWhatsAppMessage()" class="w-full bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold py-2.5 rounded-xl transition cursor-pointer">
                             📋 Salin Ayat Jemputan WhatsApp
                         </button>
                     </div>
@@ -248,7 +252,7 @@
                 <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col items-center justify-center">
                     <div class="text-center mb-3">
                         <h3 class="text-sm font-bold text-slate-800">Paparan 2 Muka Kad (Klik & Seret Teks Untuk Ubahsuai)</h3>
-                        <p class="text-[11px] text-slate-400">Sebelah Kiri: Muka Depan | Sebelah Kanan: Muka Belakang</p>
+                        <p class="text-[11px] text-slate-400">Saiz Cetakan: 4x6 Inci (300 DPI / 1200x1800px setiap muka)</p>
                     </div>
 
                     <div class="flex flex-wrap xl:flex-nowrap justify-center items-start gap-6 w-full overflow-x-auto py-2">
@@ -281,18 +285,26 @@
                     <label class="block text-xs font-semibold text-slate-600 mb-1">Nombor WhatsApp Admin</label>
                     <input type="text" id="setting_wa" value="60123456789" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                 </div>
-                <button onclick="saveSettings()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Simpan Tetapan</button>
+                <button type="button" onclick="saveSettings()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Simpan Tetapan</button>
             </div>
         </section>
 
     </main>
 
     <script>
-        // Inisialisasi 2 Kanvas Fabric.js (Muka Depan & Muka Belakang)
-        const frontCanvas = new fabric.Canvas('canvasFront', { backgroundColor: '#f8fafc', preserveObjectStacking: true });
-        const backCanvas = new fabric.Canvas('canvasBack', { backgroundColor: '#f8fafc', preserveObjectStacking: true });
+        // =========================================================================
+        // ENJIN EDITOR 2D PRO (NATIVE HTML5 CANVAS - 100% STABIL & 300 DPI)
+        // =========================================================================
+        const state = {
+            front: { bg: null, items: [] },
+            back: { bg: null, items: [] },
+            selectedSide: null,
+            selectedIndex: -1,
+            isDragging: false,
+            dragOffsetX: 0,
+            dragOffsetY: 0
+        };
 
-        let activeCanvas = frontCanvas;
         let currentOrderData = {
             tajuk: "Undangan Majlis Walimatulurus",
             jawi: "YA",
@@ -312,284 +324,413 @@
             fon4: "4) AIMAN - 011 63686971"
         };
 
-        function setupCanvasSelection(canvasInstance, sideName) {
-            canvasInstance.on('selection:created', (e) => handleSelect(canvasInstance, sideName, e.selected[0]));
-            canvasInstance.on('selection:updated', (e) => handleSelect(canvasInstance, sideName, e.selected[0]));
-            canvasInstance.on('selection:cleared', () => {
-                if (activeCanvas === canvasInstance) {
+        // Fungsi Lukis Semula Kanvas
+        function renderSide(side, isExport = false) {
+            const canvas = document.getElementById(side === 'front' ? 'canvasFront' : 'canvasBack');
+            const ctx = canvas.getContext('2d');
+            const data = state[side];
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. Lukis Background
+            if (data.bg) {
+                ctx.drawImage(data.bg, 0, 0, canvas.width, canvas.height);
+            } else {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // 2. Lukis Setiap Objek (Teks atau Gambar Overlay)
+            data.items.forEach((item, idx) => {
+                ctx.save();
+                if (item.type === 'text') {
+                    const weight = item.bold ? 'bold ' : '';
+                    const italic = item.italic ? 'italic ' : '';
+                    ctx.font = `${italic}${weight}${item.fontSize}px "${item.fontFamily}", sans-serif`;
+                    ctx.fillStyle = item.fill;
+                    ctx.textAlign = item.align || 'center';
+                    ctx.textBaseline = 'top';
+
+                    const lines = item.text.split('\n');
+                    const lineHeight = item.fontSize * 1.25;
+                    let maxWidth = 0;
+
+                    lines.forEach((line, lineIdx) => {
+                        const metrics = ctx.measureText(line);
+                        if (metrics.width > maxWidth) maxWidth = metrics.width;
+                        ctx.fillText(line, item.x, item.y + (lineIdx * lineHeight));
+                    });
+
+                    // Simpan kotak sempadan (bounding box) untuk pengesanan klik
+                    item._w = Math.max(maxWidth, 30);
+                    item._h = lines.length * lineHeight;
+                    item._left = item.align === 'center' ? item.x - item._w / 2 : item.x;
+                    item._top = item.y;
+
+                } else if (item.type === 'image' && item.imgObj) {
+                    ctx.drawImage(item.imgObj, item.x, item.y, item.width, item.height);
+                    item._w = item.width;
+                    item._h = item.height;
+                    item._left = item.x;
+                    item._top = item.y;
+                }
+
+                // Lukis kotak pilihan biru jika objek sedang dipilih (bukan masa export)
+                if (!isExport && state.selectedSide === side && state.selectedIndex === idx) {
+                    ctx.strokeStyle = '#4f46e5';
+                    ctx.lineWidth = 1.5;
+                    ctx.setLineDash([4, 3]);
+                    ctx.strokeRect(item._left - 4, item._top - 3, item._w + 8, item._h + 6);
+                }
+                ctx.restore();
+            });
+        }
+
+        function renderAll(isExport = false) {
+            renderSide('front', isExport);
+            renderSide('back', isExport);
+        }
+
+        // Pasang Event Tetikus (Klik & Seret) pada Kedua-dua Kanvas
+        function attachCanvasEvents(side) {
+            const canvas = document.getElementById(side === 'front' ? 'canvasFront' : 'canvasBack');
+
+            canvas.addEventListener('mousedown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
+                const my = (e.clientY - rect.top) * (canvas.height / rect.height);
+
+                const items = state[side].items;
+                let foundIdx = -1;
+                // Cari dari lapisan atas ke bawah
+                for (let i = items.length - 1; i >= 0; i--) {
+                    const it = items[i];
+                    if (mx >= it._left - 6 && mx <= it._left + it._w + 6 &&
+                        my >= it._top - 6 && my <= it._top + it._h + 6) {
+                        foundIdx = i;
+                        break;
+                    }
+                }
+
+                if (foundIdx !== -1) {
+                    state.selectedSide = side;
+                    state.selectedIndex = foundIdx;
+                    state.isDragging = true;
+                    state.dragOffsetX = mx - items[foundIdx].x;
+                    state.dragOffsetY = my - items[foundIdx].y;
+                    updateEditorPanel();
+                } else {
+                    state.selectedSide = null;
+                    state.selectedIndex = -1;
                     document.getElementById('editorProPanel').classList.add('hidden');
                 }
+                renderAll();
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (!state.isDragging || state.selectedSide !== side || state.selectedIndex === -1) return;
+                const rect = canvas.getBoundingClientRect();
+                const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
+                const my = (e.clientY - rect.top) * (canvas.height / rect.height);
+
+                const item = state[side].items[state.selectedIndex];
+                item.x = mx - state.dragOffsetX;
+                item.y = my - state.dragOffsetY;
+                renderSide(side);
+            });
+
+            window.addEventListener('mouseup', () => {
+                state.isDragging = false;
             });
         }
 
-        setupCanvasSelection(frontCanvas, 'Muka Depan');
-        setupCanvasSelection(backCanvas, 'Muka Belakang');
+        // Kemaskini Panel Editor Kiri Apabila Objek Dipilih
+        function updateEditorPanel() {
+            const panel = document.getElementById('editorProPanel');
+            if (!state.selectedSide || state.selectedIndex === -1) {
+                panel.classList.add('hidden');
+                return;
+            }
+            panel.classList.remove('hidden');
+            document.getElementById('activeSideBadge').innerText = state.selectedSide === 'front' ? 'Muka Depan' : 'Muka Belakang';
 
-        function handleSelect(canvasInstance, sideName, obj) {
-            if (canvasInstance === frontCanvas) backCanvas.discardActiveObject().renderAll();
-            if (canvasInstance === backCanvas) frontCanvas.discardActiveObject().renderAll();
-
-            activeCanvas = canvasInstance;
-            document.getElementById('activeSideBadge').innerText = sideName;
-            document.getElementById('editorProPanel').classList.remove('hidden');
-
-            if (obj && (obj.type === 'i-text' || obj.type === 'textbox')) {
-                document.getElementById('propText').value = obj.text;
-                document.getElementById('propFont').value = obj.fontFamily || 'Plus Jakarta Sans';
-                document.getElementById('propSize').value = obj.fontSize || 14;
-                document.getElementById('propColor').value = obj.fill || '#1e293b';
+            const item = state[state.selectedSide].items[state.selectedIndex];
+            if (item.type === 'text') {
+                document.getElementById('textEditControls').classList.remove('hidden');
+                document.getElementById('imageEditControls').classList.add('hidden');
+                document.getElementById('propText').value = item.text;
+                document.getElementById('propFont').value = item.fontFamily;
+                document.getElementById('propSize').value = item.fontSize;
+                document.getElementById('propColor').value = item.fill;
+            } else {
+                document.getElementById('textEditControls').classList.add('hidden');
+                document.getElementById('imageEditControls').classList.remove('hidden');
+                document.getElementById('propImgWidth').value = item.width;
             }
         }
 
-        function updateObjProp(prop, val) {
-            const obj = activeCanvas.getActiveObject();
-            if (obj) {
-                obj.set(prop, val);
-                activeCanvas.renderAll();
+        function updateSelectedProp(prop, val) {
+            if (!state.selectedSide || state.selectedIndex === -1) return;
+            state[state.selectedSide].items[state.selectedIndex][prop] = val;
+            renderSide(state.selectedSide);
+        }
+
+        function updateSelectedImageSize(newWidth) {
+            if (!state.selectedSide || state.selectedIndex === -1) return;
+            const item = state[state.selectedSide].items[state.selectedIndex];
+            if (item.type === 'image') {
+                const ratio = item.height / item.width;
+                item.width = newWidth;
+                item.height = newWidth * ratio;
+                renderSide(state.selectedSide);
             }
         }
 
-        function toggleBold() {
-            const obj = activeCanvas.getActiveObject();
-            if (obj) {
-                obj.set('fontWeight', obj.fontWeight === 'bold' ? 'normal' : 'bold');
-                activeCanvas.renderAll();
-            }
+        function toggleSelectedStyle(style) {
+            if (!state.selectedSide || state.selectedIndex === -1) return;
+            const item = state[state.selectedSide].items[state.selectedIndex];
+            item[style] = !item[style];
+            renderSide(state.selectedSide);
         }
 
-        function toggleItalic() {
-            const obj = activeCanvas.getActiveObject();
-            if (obj) {
-                obj.set('fontStyle', obj.fontStyle === 'italic' ? 'normal' : 'italic');
-                activeCanvas.renderAll();
-            }
+        function centerSelectedH() {
+            if (!state.selectedSide || state.selectedIndex === -1) return;
+            const item = state[state.selectedSide].items[state.selectedIndex];
+            item.x = item.type === 'text' && item.align === 'center' ? 180 : 180 - (item._w / 2);
+            renderSide(state.selectedSide);
         }
 
-        function centerHorizontal() {
-            const obj = activeCanvas.getActiveObject();
-            if (obj) {
-                obj.centerH();
-                obj.setCoords();
-                activeCanvas.renderAll();
-            }
+        function deleteSelected() {
+            if (!state.selectedSide || state.selectedIndex === -1) return;
+            state[state.selectedSide].items.splice(state.selectedIndex, 1);
+            state.selectedIndex = -1;
+            document.getElementById('editorProPanel').classList.add('hidden');
+            renderAll();
         }
 
-        function deleteActiveObj() {
-            const obj = activeCanvas.getActiveObject();
-            if (obj) {
-                activeCanvas.remove(obj);
-                document.getElementById('editorProPanel').classList.add('hidden');
-            }
-        }
-
-        function addCenteredText(canvasTarget, textStr, topPos, options = {}) {
-            const textObj = new fabric.IText(textStr, {
-                top: topPos,
-                fontSize: options.fontSize || 13,
-                fontFamily: options.fontFamily || 'Plus Jakarta Sans',
-                fontWeight: options.fontWeight || 'normal',
-                fontStyle: options.fontStyle || 'normal',
-                fill: options.fill || '#1e293b',
-                textAlign: 'center',
-                originX: 'center',
-                left: canvasTarget.width / 2
-            });
-            canvasTarget.add(textObj);
-            return textObj;
-        }
-
-        function populateBothCanvases(data) {
-            const bgFront = frontCanvas.backgroundImage;
-            const bgBack = backCanvas.backgroundImage;
-
-            frontCanvas.clear();
-            backCanvas.clear();
-            frontCanvas.backgroundColor = '#f8fafc';
-            backCanvas.backgroundColor = '#f8fafc';
-            if (bgFront) frontCanvas.setBackgroundImage(bgFront, frontCanvas.renderAll.bind(frontCanvas));
-            if (bgBack) backCanvas.setBackgroundImage(bgBack, backCanvas.renderAll.bind(backCanvas));
-
-            // --- MUKA DEPAN ---
-            addCenteredText(frontCanvas, data.tajuk, 65, { fontSize: 18, fontFamily: 'Great Vibes', fill: '#1e293b' });
-            
+        // Susun Teks Secara Automatik ke Kedua-dua Muka
+        function populateBothCards(data) {
             const parts = data.nick.split('&');
-            const initial1 = parts[0] ? parts[0].trim().charAt(0).toUpperCase() : 'A';
-            const initial2 = parts[1] ? parts[1].trim().charAt(0).toUpperCase() : 'A';
-            addCenteredText(frontCanvas, `${initial1}  &  ${initial2}`, 185, { fontSize: 54, fontFamily: 'Cinzel', fontWeight: 'bold', fill: '#0f172a' });
-            addCenteredText(frontCanvas, data.nick.toUpperCase(), 265, { fontSize: 15, fontFamily: 'Cinzel', fontWeight: 'bold', fill: '#1e293b' });
+            const i1 = parts[0] ? parts[0].trim().charAt(0).toUpperCase() : 'A';
+            const i2 = parts[1] ? parts[1].trim().charAt(0).toUpperCase() : 'A';
 
-            addCenteredText(frontCanvas, `${data.tarikhM}\n${data.tarikhH}`, 380, { fontSize: 12, fontFamily: 'Playfair Display', fontWeight: 'bold' });
-            addCenteredText(frontCanvas, "“Dan kami telah menciptakan kamu berpasang-pasangan.”\n{QS: Surah An-Naba ayat 8}", 465, { fontSize: 9, fontFamily: 'Playfair Display', fontStyle: 'italic', fill: '#334155' });
+            // Muka Depan
+            state.front.items = [
+                { type: 'text', text: data.tajuk, x: 180, y: 60, fontSize: 19, fontFamily: 'Great Vibes', fill: '#1e293b', bold: false, italic: false, align: 'center' },
+                { type: 'text', text: `${i1}  &  ${i2}`, x: 180, y: 175, fontSize: 54, fontFamily: 'Cinzel', fill: '#0f172a', bold: true, italic: false, align: 'center' },
+                { type: 'text', text: data.nick.toUpperCase(), x: 180, y: 255, fontSize: 15, fontFamily: 'Cinzel', fill: '#1e293b', bold: true, italic: false, align: 'center' },
+                { type: 'text', text: `${data.tarikhM}\n${data.tarikhH}`, x: 180, y: 375, fontSize: 12, fontFamily: 'Playfair Display', fill: '#0f172a', bold: true, italic: false, align: 'center' },
+                { type: 'text', text: "“Dan kami telah menciptakan kamu berpasang-pasangan.”\n{QS: Surah An-Naba ayat 8}", x: 180, y: 465, fontSize: 9, fontFamily: 'Playfair Display', fill: '#334155', bold: false, italic: true, align: 'center' }
+            ];
 
-            // --- MUKA BELAKANG ---
-            let yPos = 25;
-            if (data.jawi === "YA") {
-                addCenteredText(backCanvas, "بِسۡـــــــــمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـــــــيمِ", yPos, { fontSize: 15, fontFamily: 'Amiri', fontWeight: 'bold' });
-                yPos += 25;
+            // Muka Belakang
+            let backItems = [];
+            let y = 24;
+            if (data.jawi === 'YA') {
+                backItems.push({ type: 'text', text: "بِسۡـــــــــمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـــــــيمِ", x: 180, y: y, fontSize: 15, fontFamily: 'Amiri', fill: '#0f172a', bold: true, italic: false, align: 'center' });
+                y += 26;
             }
-            addCenteredText(backCanvas, "Salam Sejahtera", yPos, { fontSize: 11, fontFamily: 'Playfair Display', fontStyle: 'italic' });
-            yPos += 18;
-            addCenteredText(backCanvas, data.tajuk.replace("Undangan Majlis ", ""), yPos, { fontSize: 16, fontFamily: 'Great Vibes' });
-            yPos += 26;
+            backItems.push({ type: 'text', text: "Salam Sejahtera", x: 180, y: y, fontSize: 11, fontFamily: 'Playfair Display', fill: '#334155', bold: false, italic: true, align: 'center' });
+            y += 18;
+            backItems.push({ type: 'text', text: data.tajuk.replace("Undangan Majlis ", ""), x: 180, y: y, fontSize: 17, fontFamily: 'Great Vibes', fill: '#0f172a', bold: false, italic: false, align: 'center' });
+            y += 26;
+            backItems.push({ type: 'text', text: `${data.ayah.toUpperCase()}\n${data.ibu.toUpperCase()}`, x: 180, y: y, fontSize: 11, fontFamily: 'Plus Jakarta Sans', fill: '#0f172a', bold: true, italic: false, align: 'center' });
+            y += 35;
+            backItems.push({ type: 'text', text: "Dengan segala hormatnya dan penuh rasa syukur,\nkami ingin menjemput\nTan Sri / Dato' / Datin / Tuan / Puan / Encik / Cik", x: 180, y: y, fontSize: 8.5, fontFamily: 'Plus Jakarta Sans', fill: '#334155', bold: false, italic: true, align: 'center' });
+            y += 40;
+            backItems.push({ type: 'text', text: "Bagi meraikan majlis perkahwinan anakanda kami", x: 180, y: y, fontSize: 8.5, fontFamily: 'Plus Jakarta Sans', fill: '#334155', bold: false, italic: true, align: 'center' });
+            y += 18;
+            backItems.push({ type: 'text', text: `${data.p1.toUpperCase()}\n&\n${data.p2.toUpperCase()}`, x: 180, y: y, fontSize: 11.5, fontFamily: 'Plus Jakarta Sans', fill: '#0f172a', bold: true, italic: false, align: 'center' });
+            y += 48;
+            backItems.push({ type: 'text', text: `${data.tarikhM}\n${data.tarikhH}`, x: 180, y: y, fontSize: 9.5, fontFamily: 'Plus Jakarta Sans', fill: '#0f172a', bold: true, italic: false, align: 'center' });
+            y += 30;
+            backItems.push({ type: 'text', text: `${data.alamat.toUpperCase()}\nAturcara Majlis: ${data.masa}`, x: 180, y: y, fontSize: 8.5, fontFamily: 'Plus Jakarta Sans', fill: '#1e293b', bold: true, italic: false, align: 'center' });
 
-            addCenteredText(backCanvas, `${data.ayah}\n${data.ibu}`, yPos, { fontSize: 11, fontWeight: 'bold' });
-            yPos += 34;
+            // Senarai No Telefon
+            let phones = [data.fon1, data.fon2, data.fon3, data.fon4].filter(f => f && f.trim() !== '').join('\n');
+            backItems.push({ type: 'text', text: `NO FON DIHUBUNGI:\n${phones}`, x: 195, y: 445, fontSize: 8, fontFamily: 'Plus Jakarta Sans', fill: '#0f172a', bold: true, italic: false, align: 'left' });
 
-            addCenteredText(backCanvas, "Dengan segala hormatnya dan penuh rasa syukur,\nkami ingin menjemput\nTan Sri / Dato' / Datin / Tuan / Puan / Encik / Cik", yPos, { fontSize: 8.5, fontStyle: 'italic' });
-            yPos += 40;
-
-            addCenteredText(backCanvas, "Bagi meraikan majlis perkahwinan anakanda kami", yPos, { fontSize: 8.5, fontStyle: 'italic' });
-            yPos += 18;
-
-            addCenteredText(backCanvas, `${data.p1}\n&\n${data.p2}`, yPos, { fontSize: 11.5, fontWeight: 'bold' });
-            yPos += 48;
-
-            addCenteredText(backCanvas, `${data.tarikhM}\n${data.tarikhH}`, yPos, { fontSize: 9.5, fontWeight: 'bold' });
-            yPos += 30;
-
-            addCenteredText(backCanvas, `${data.alamat}\nAturcara Majlis: ${data.masa}`, yPos, { fontSize: 8.5, fontWeight: '600' });
-            yPos += 45;
-
-            const fonBlock = `NO FON DIHUBUNGI:\n${data.fon1}\n${data.fon2}\n${data.fon3}\n${data.fon4}`;
-            const fonObj = new fabric.IText(fonBlock, {
-                left: 195,
-                top: 445,
-                fontSize: 8,
-                fontFamily: 'Plus Jakarta Sans',
-                fontWeight: '600',
-                fill: '#0f172a',
-                textAlign: 'left'
-            });
-            backCanvas.add(fonObj);
-
-            frontCanvas.renderAll();
-            backCanvas.renderAll();
+            state.back.items = backItems;
+            renderAll();
         }
 
-        // Fungsi Auto-Susun Fleksibel WhatsApp
+        // Ekstrak Data WhatsApp Pintar
         function autoLayoutFromWhatsApp() {
             const raw = document.getElementById('d_input_data').value;
             if (!raw.trim()) {
-                populateBothCanvases(currentOrderData);
+                populateBothCards(currentOrderData);
                 return;
             }
 
-            const findValue = (keywords) => {
-                for (let kw of keywords) {
-                    const regex = new RegExp(`\\*?${kw}:\\*?\\s*(.+)`, 'i');
-                    const match = raw.match(regex);
-                    if (match && match[1]) return match[1].trim();
+            const findVal = (keys) => {
+                for (let k of keys) {
+                    const reg = new RegExp(`\\*?${k}:\\*?\\s*(.+)`, 'i');
+                    const m = raw.match(reg);
+                    if (m && m[1]) return m[1].trim();
                 }
                 return '';
             };
 
-            currentOrderData.tajuk = findValue(['Tajuk']) || currentOrderData.tajuk;
-            currentOrderData.jawi = findValue(['Tulisan Jawi']) || 'YA';
-            currentOrderData.ayah = findValue(['Ayah']) || currentOrderData.ayah;
-            currentOrderData.ibu = findValue(['Ibu']) || currentOrderData.ibu;
-            
-            let p1 = findValue(['Pengantin 1']);
-            let p2 = findValue(['Pengantin 2']);
-            if (p1) currentOrderData.p1 = p1.toUpperCase();
-            if (p2) currentOrderData.p2 = p2.toUpperCase();
+            currentOrderData.tajuk = findVal(['Tajuk']) || currentOrderData.tajuk;
+            currentOrderData.jawi = (findVal(['Tulisan Jawi']) || 'YA').toUpperCase();
+            currentOrderData.ayah = findVal(['Ayah']) || currentOrderData.ayah;
+            currentOrderData.ibu = findVal(['Ibu']) || currentOrderData.ibu;
+            currentOrderData.p1 = findVal(['Pengantin 1']) || currentOrderData.p1;
+            currentOrderData.p2 = findVal(['Pengantin 2']) || currentOrderData.p2;
+            currentOrderData.nick = findVal(['Nickname Depan', 'Nickname']) || currentOrderData.nick;
+            currentOrderData.tarikhM = findVal(['Tarikh Masihi', 'Tarikh']) || currentOrderData.tarikhM;
+            currentOrderData.tarikhH = findVal(['Tarikh Hijrah']) || currentOrderData.tarikhH;
+            currentOrderData.masa = findVal(['Masa']) || currentOrderData.masa;
+            currentOrderData.alamat = findVal(['Alamat']) || currentOrderData.alamat;
+            currentOrderData.map = findVal(['Lokasi Maps', 'Maps']) || currentOrderData.map;
 
-            currentOrderData.nick = findValue(['Nickname Depan', 'Nickname']) || currentOrderData.nick;
-            currentOrderData.tarikhM = findValue(['Tarikh Masihi', 'Tarikh']) || currentOrderData.tarikhM;
-            currentOrderData.tarikhH = findValue(['Tarikh Hijrah']) || currentOrderData.tarikhH;
-            currentOrderData.masa = findValue(['Masa']) || currentOrderData.masa;
-            currentOrderData.alamat = findValue(['Alamat']) || currentOrderData.alamat;
-            currentOrderData.map = findValue(['Lokasi Maps', 'Maps']) || currentOrderData.map;
-
+            // Kesan nombor telefon
             const lines = raw.split('\n');
-            let phoneLines = lines.filter(l => /^[0-9+()\-\s]{8,}/.test(l.trim()) && !l.includes('http') && !l.toLowerCase().includes('lokasi') && !l.toLowerCase().includes('tarikh'));
-            
+            const phoneLines = lines.filter(l => /^[0-9+()\-\s]{8,}/.test(l.trim()) && !l.includes('http') && !l.toLowerCase().includes('tarikh'));
             if (phoneLines.length > 0) {
-                if (phoneLines[0]) currentOrderData.fon1 = `1) ${phoneLines[0].trim()}`;
-                if (phoneLines[1]) currentOrderData.fon2 = `2) ${phoneLines[1].trim()}`;
-                if (phoneLines[2]) currentOrderData.fon3 = `3) ${phoneLines[2].trim()}`;
-                if (phoneLines[3]) currentOrderData.fon4 = `4) ${phoneLines[3].trim()}`;
+                currentOrderData.fon1 = phoneLines[0] ? (phoneLines[0].trim().startsWith('1)') ? phoneLines[0].trim() : `1) ${phoneLines[0].trim()}`) : '';
+                currentOrderData.fon2 = phoneLines[1] ? (phoneLines[1].trim().startsWith('2)') ? phoneLines[1].trim() : `2) ${phoneLines[1].trim()}`) : '';
+                currentOrderData.fon3 = phoneLines[2] ? (phoneLines[2].trim().startsWith('3)') ? phoneLines[2].trim() : `3) ${phoneLines[2].trim()}`) : '';
+                currentOrderData.fon4 = phoneLines[3] ? (phoneLines[3].trim().startsWith('4)') ? phoneLines[3].trim() : `4) ${phoneLines[3].trim()}`) : '';
             }
 
-            populateBothCanvases(currentOrderData);
-            alert('Berjaya! Data WhatsApp telah auto-susun ke 2 muka kad.');
+            populateBothCards(currentOrderData);
         }
 
-        function loadBg(event, targetCanvas) {
+        // Muat Naik Gambar Template Depan & Belakang
+        function handleBgUpload(event, side) {
             const file = event.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function(f) {
-                fabric.Image.fromURL(f.target.result, function(img) {
-                    targetCanvas.setBackgroundImage(img, targetCanvas.renderAll.bind(targetCanvas), {
-                        scaleX: targetCanvas.width / img.width,
-                        scaleY: targetCanvas.height / img.height
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    state[side].bg = img;
+                    renderSide(side);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Muat Naik Gambar Peta / QR Code ke Muka Belakang
+        function handleOverlayUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const targetW = 110;
+                    const targetH = targetW * (img.height / img.width);
+                    state.back.items.push({
+                        type: 'image',
+                        imgObj: img,
+                        x: 30,
+                        y: 420,
+                        width: targetW,
+                        height: targetH
                     });
-                });
+                    state.selectedSide = 'back';
+                    state.selectedIndex = state.back.items.length - 1;
+                    updateEditorPanel();
+                    renderSide('back');
+                };
+                img.src = e.target.result;
             };
             reader.readAsDataURL(file);
         }
 
-        function addOverlayImage(event, targetCanvas) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(f) {
-                fabric.Image.fromURL(f.target.result, function(img) {
-                    img.scaleToWidth(110);
-                    img.set({ left: 30, top: 430 });
-                    targetCanvas.add(img);
-                    targetCanvas.setActiveObject(img);
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function addManualText(targetCanvas, defaultText) {
-            const t = addCenteredText(targetCanvas, defaultText, 250, { fontSize: 14, fontWeight: 'bold' });
-            targetCanvas.setActiveObject(t);
-        }
-
-        function setMonochrome(isBlackOnly) {
-            const color = isBlackOnly ? '#000000' : '#1e293b';
-            [frontCanvas, backCanvas].forEach(c => {
-                c.getObjects().forEach(obj => {
-                    if (obj.type === 'i-text') obj.set('fill', color);
-                });
-                c.renderAll();
+        function addManualItem(side, defaultText) {
+            state[side].items.push({
+                type: 'text',
+                text: defaultText,
+                x: 180,
+                y: 250,
+                fontSize: 14,
+                fontFamily: 'Plus Jakarta Sans',
+                fill: '#0f172a',
+                bold: true,
+                italic: false,
+                align: 'center'
             });
+            state.selectedSide = side;
+            state.selectedIndex = state[side].items.length - 1;
+            updateEditorPanel();
+            renderSide(side);
         }
 
-        function exportCombinedPreview() {
-            const tempCanvas = document.createElement('canvas');
-            const gap = 20;
-            tempCanvas.width = frontCanvas.width * 2 + gap;
-            tempCanvas.height = frontCanvas.height;
-            const ctx = tempCanvas.getContext('2d');
+        function setMonochrome(isBlack) {
+            const col = isBlack ? '#000000' : '#1e293b';
+            ['front', 'back'].forEach(side => {
+                state[side].items.forEach(it => {
+                    if (it.type === 'text') it.fill = col;
+                });
+            });
+            renderAll();
+        }
+
+        // Export Resolusi Tinggi 300 DPI (1200x1800px setiap muka)
+        function export300DPIPreview() {
+            renderAll(true); // Hilangkan kotak pilihan biru seketika
+            const scale = 3.3334; // 360 * 3.3334 = 1200px (4 inci @ 300 DPI)
+            const w = 360 * scale;
+            const h = 540 * scale;
+            const gap = 40;
+
+            const outCanvas = document.createElement('canvas');
+            outCanvas.width = (w * 2) + gap;
+            outCanvas.height = h;
+            const ctx = outCanvas.getContext('2d');
 
             ctx.fillStyle = '#e2e8f0';
-            ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
 
-            const img1 = new Image();
-            const img2 = new Image();
-            img1.src = frontCanvas.toDataURL({ multiplier: 2 });
-            img2.src = backCanvas.toDataURL({ multiplier: 2 });
+            // Lukis semula pada skala 300 DPI supaya teks ultra tajam
+            ['front', 'back'].forEach((side, sIdx) => {
+                const offsetX = sIdx === 0 ? 0 : w + gap;
+                const data = state[side];
+                ctx.save();
+                ctx.translate(offsetX, 0);
+                ctx.scale(scale, scale);
 
-            img1.onload = () => {
-                ctx.drawImage(img1, 0, 0, frontCanvas.width, frontCanvas.height);
-                img2.onload = () => {
-                    ctx.drawImage(img2, frontCanvas.width + gap, 0, backCanvas.width, backCanvas.height);
-                    const link = document.createElement('a');
-                    link.download = `Preview-Kad-${currentOrderData.nick.replace(/\s+/g, '_')}.png`;
-                    link.href = tempCanvas.toDataURL('image/png');
-                    link.click();
-                };
-            };
+                if (data.bg) {
+                    ctx.drawImage(data.bg, 0, 0, 360, 540);
+                } else {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, 360, 540);
+                }
+
+                data.items.forEach(item => {
+                    if (item.type === 'text') {
+                        const weight = item.bold ? 'bold ' : '';
+                        const italic = item.italic ? 'italic ' : '';
+                        ctx.font = `${italic}${weight}${item.fontSize}px "${item.fontFamily}", sans-serif`;
+                        ctx.fillStyle = item.fill;
+                        ctx.textAlign = item.align || 'center';
+                        ctx.textBaseline = 'top';
+                        const lines = item.text.split('\n');
+                        lines.forEach((line, lIdx) => {
+                            ctx.fillText(line, item.x, item.y + (lIdx * item.fontSize * 1.25));
+                        });
+                    } else if (item.type === 'image' && item.imgObj) {
+                        ctx.drawImage(item.imgObj, item.x, item.y, item.width, item.height);
+                    }
+                });
+                ctx.restore();
+            });
+
+            const link = document.createElement('a');
+            link.download = `ESKPRINT-300DPI-${currentOrderData.nick.replace(/\s+/g, '_')}.png`;
+            link.href = outCanvas.toDataURL('image/png');
+            link.click();
+            renderAll(false);
         }
 
         function copyFinalWhatsAppMessage() {
             const names = currentOrderData.nick.split('&');
-            const n1 = names[0] ? names[0].trim() : 'PENGANTIN 1';
-            const n2 = names[1] ? names[1].trim() : 'PENGANTIN 2';
+            const n1 = names[0] ? names[0].trim().toUpperCase() : 'PENGANTIN 1';
+            const n2 = names[1] ? names[1].trim().toUpperCase() : 'PENGANTIN 2';
 
             const msg = `بِسۡـــــــــمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـــــــيمِ\n\n` +
 `‎السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ \n\n` +
@@ -605,29 +746,29 @@
 `📍${currentOrderData.map}`;
 
             navigator.clipboard.writeText(msg).then(() => {
-                alert('Ayat jemputan WhatsApp berjaya disalin! Anda boleh terus paste bersama gambar preview.');
+                alert('Ayat jemputan WhatsApp berjaya disalin!');
             });
         }
 
         function submitOrder(e) {
             e.preventDefault();
             const waAdmin = localStorage.getItem('esk_wa') || '60123456789';
-            const text = `*TEMPAHAN KAD KAHWIN - ESKPRINT*%0A%0A` +
-                `*Tajuk:* ${document.getElementById('c_tajuk').value}%0A` +
-                `*Tulisan Jawi:* ${document.getElementById('c_jawi').value}%0A` +
-                `*Ayah:* ${document.getElementById('c_ayah').value}%0A` +
-                `*Ibu:* ${document.getElementById('c_ibu').value}%0A` +
-                `*Pengantin 1:* ${document.getElementById('c_nama_p1').value}%0A` +
-                `*Pengantin 2:* ${document.getElementById('c_nama_p2').value}%0A` +
-                `*Nickname Depan:* ${document.getElementById('c_nick').value}%0A` +
-                `*Tarikh Masihi:* ${document.getElementById('c_tarikh_m').value}%0A` +
-                `*Tarikh Hijrah:* ${document.getElementById('c_tarikh_h').value}%0A` +
-                `*Masa:* ${document.getElementById('c_masa').value}%0A` +
-                `*Alamat:* ${document.getElementById('c_alamat').value}%0A` +
-                `*Lokasi Maps:* ${document.getElementById('c_map').value}%0A%0A` +
-                `*No Telefon:*%0A${document.getElementById('c_fon1').value}%0A${document.getElementById('c_fon2').value}%0A${document.getElementById('c_fon3').value}%0A${document.getElementById('c_fon4').value}`;
+            const text = `*TEMPAHAN KAD KAHWIN - ESKPRINT*\n\n` +
+                `*Tajuk:* ${document.getElementById('c_tajuk').value}\n` +
+                `*Tulisan Jawi:* ${document.getElementById('c_jawi').value}\n` +
+                `*Ayah:* ${document.getElementById('c_ayah').value}\n` +
+                `*Ibu:* ${document.getElementById('c_ibu').value}\n` +
+                `*Pengantin 1:* ${document.getElementById('c_nama_p1').value}\n` +
+                `*Pengantin 2:* ${document.getElementById('c_nama_p2').value}\n` +
+                `*Nickname Depan:* ${document.getElementById('c_nick').value}\n` +
+                `*Tarikh Masihi:* ${document.getElementById('c_tarikh_m').value}\n` +
+                `*Tarikh Hijrah:* ${document.getElementById('c_tarikh_h').value}\n` +
+                `*Masa:* ${document.getElementById('c_masa').value}\n` +
+                `*Alamat:* ${document.getElementById('c_alamat').value}\n` +
+                `*Lokasi Maps:* ${document.getElementById('c_map').value}\n\n` +
+                `*No Telefon:*\n${document.getElementById('c_fon1').value}\n${document.getElementById('c_fon2').value}\n${document.getElementById('c_fon3').value}\n${document.getElementById('c_fon4').value}`;
 
-            window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(decodeURIComponent(text))}`, '_blank');
+            window.open(`https://wa.me/${waAdmin}?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         function switchTab(tab) {
@@ -644,12 +785,15 @@
             alert('Tetapan berjaya disimpan!');
         }
 
-        window.onload = function() {
+        // Jalankan Permulaan Sistem
+        window.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('esk_wa')) {
                 document.getElementById('setting_wa').value = localStorage.getItem('esk_wa');
             }
-            populateBothCanvases(currentOrderData);
-        };
+            attachCanvasEvents('front');
+            attachCanvasEvents('back');
+            populateBothCards(currentOrderData);
+        });
     </script>
 </body>
 </html>
