@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Tempahan Kad ESKPRINT</title>
-    <!-- Tailwind CSS untuk UI yang kemas & moden -->
+    <title>Sistem Tempahan Kad ESKPRINT - Studio 2D</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Fabric.js untuk Editor 2D Ala Canva -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/531/fabric.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Great+Vibes&family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
@@ -15,203 +17,180 @@
 
     <!-- NAVIGATION TABS -->
     <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
             <div class="flex items-center space-x-2">
                 <span class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-bold text-lg tracking-wider">ESKPRINT</span>
-                <span class="text-sm text-slate-300 font-medium hidden sm:inline">Sistem Tempahan & Automasi Kad Kahwin</span>
+                <span class="text-sm text-slate-300 font-medium hidden sm:inline">Studio Kad Kahwin 2D</span>
             </div>
             <nav class="flex space-x-1 sm:space-x-2 mt-2 sm:mt-0">
-                <button onclick="switchTab('client')" id="btn-client" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition">Halaman Pelanggan</button>
-                <button onclick="switchTab('designer')" id="btn-designer" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:bg-slate-800 transition">Studio Designer</button>
+                <button onclick="switchTab('client')" id="btn-client" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:bg-slate-800 transition">Halaman Pelanggan</button>
+                <button onclick="switchTab('designer')" id="btn-designer" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition">Studio Editor 2D</button>
                 <button onclick="switchTab('settings')" id="btn-settings" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:bg-slate-800 transition">Tetapan</button>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto p-4 sm:p-6">
+    <main class="max-w-7xl mx-auto p-4 sm:p-6">
 
-        <!-- ================= HALAMAN 1: PELANGGAN (MOBILE-FRIENDLY) ================= -->
-        <section id="tab-client" class="space-y-6">
+        <!-- ================= HALAMAN 1: PELANGGAN ================= -->
+        <section id="tab-client" class="hidden space-y-6">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-2xl mx-auto">
                 <div class="text-center mb-6">
                     <h1 class="text-2xl font-bold text-slate-900">Borang Tempahan Kad Kahwin</h1>
-                    <p class="text-sm text-slate-500 mt-1">Sila lengkapkan maklumat majlis anda di bawah.</p>
+                    <p class="text-sm text-slate-500 mt-1">Sila lengkapkan maklumat majlis anda.</p>
                 </div>
-
                 <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tajuk Majlis</label>
-                        <select id="c_tajuk" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                        <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Tajuk Majlis</label>
+                        <select id="c_tajuk" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                             <option value="Undangan Majlis Walimatulurus">Undangan Majlis Walimatulurus</option>
                             <option value="Undangan Majlis Kesyukuran">Undangan Majlis Kesyukuran</option>
                             <option value="Undangan Majlis Menyambut Menantu">Undangan Majlis Menyambut Menantu</option>
-                            <option value="Undangan Majlis Pertunangan">Undangan Majlis Pertunangan</option>
                         </select>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ayah</label>
-                            <input type="text" id="c_ayah" required placeholder="Cth: Adnan Bin Che Hassan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Ayah</label>
+                            <input type="text" id="c_ayah" required placeholder="Cth: Adnan Bin Che Hassan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ibu</label>
-                            <input type="text" id="c_ibu" required placeholder="Cth: Rahaya Binti Hussain" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Ibu</label>
+                            <input type="text" id="c_ibu" required placeholder="Cth: Rahaya Binti Hussain" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Penuh Pengantin Lelaki / Perempuan (Anak)</label>
-                            <input type="text" id="c_nama_p1" required placeholder="Cth: Nur Atikah Binti Adnan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Penuh Pengantin 1</label>
+                            <input type="text" id="c_nama_p1" required placeholder="Cth: Nur Atikah Binti Adnan" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Penuh Pasangan</label>
-                            <input type="text" id="c_nama_p2" required placeholder="Cth: Mohamad Amirul Aiman Bin Rosdi" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Penuh Pengantin 2</label>
+                            <input type="text" id="c_nama_p2" required placeholder="Cth: Mohamad Amirul Aiman" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nickname Depan (Ringkas)</label>
-                            <input type="text" id="c_nick1" required placeholder="Cth: ATIKAH & AMIRUL" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nickname Depan</label>
+                            <input type="text" id="c_nick1" required placeholder="Cth: ATIKAH & AMIRUL" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tarikh Majlis & Hijrah</label>
-                            <input type="text" id="c_tarikh" required placeholder="Cth: JUMAAT, 19 /9 /2025 (26 RABIULAWAL 1447H)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Tarikh Majlis & Hijrah</label>
+                            <input type="text" id="c_tarikh" required placeholder="Cth: JUMAAT, 19/9/2025 (26 RABIULAWAL 1447H)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                     </div>
-
                     <div>
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Alamat Penuh Tempat Majlis</label>
-                        <textarea id="c_alamat" rows="2" required placeholder="Cth: Lot 1469, Kampung Tunjong, Jalan Kuala Krai..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Alamat Penuh</label>
+                        <textarea id="c_alamat" rows="2" required placeholder="Lot 1469, Kampung Tunjong..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none"></textarea>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Atur Cara Majlis (Masa)</label>
-                            <input type="text" id="c_masa" required placeholder="Cth: 12.00 TGHRI - 6.00 PETANG" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Masa Majlis</label>
+                            <input type="text" id="c_masa" required placeholder="12.00 TGHRI - 6.00 PETANG" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Link Google Maps / Waze</label>
-                            <input type="url" id="c_map" required placeholder="Cth: https://maps.app.goo.gl/..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500">
+                            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Link Google Maps</label>
+                            <input type="url" id="c_map" required placeholder="https://maps.app.goo.gl/..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
                         </div>
                     </div>
-
-                    <!-- 4 Nombor Telefon Dihubungi -->
-                    <div class="border-t border-slate-200 pt-4">
-                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-3">Senarai 4 No Telefon Dihubungi</label>
+                    <div class="border-t pt-4">
+                        <label class="block text-xs font-semibold uppercase text-slate-700 mb-3">4 No Telefon Dihubungi</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <input type="text" id="c_fon1" placeholder="1) Adnan (Pok Nan) - 0129550420" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
+                            <input type="text" id="c_fon1" placeholder="1) Adnan - 0129550420" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
                             <input type="text" id="c_fon2" placeholder="2) Rahaya - 0175192962" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
                             <input type="text" id="c_fon3" placeholder="3) Atikah - 0129618764" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
                             <input type="text" id="c_fon4" placeholder="4) Aiman - 01163686971" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none">
                         </div>
                     </div>
-
-                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-emerald-600/20 text-center flex items-center justify-center space-x-2">
-                        <span>Hantar Tempahan ke WhatsApp ESKPRINT</span>
-                    </button>
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl transition shadow">Hantar Tempahan ke WhatsApp</button>
                 </form>
             </div>
         </section>
 
-        <!-- ================= HALAMAN 2: DESIGNER STUDIO (DESKTOP) ================= -->
-        <section id="tab-designer" class="hidden space-y-4">
+        <!-- ================= HALAMAN 2: STUDIO EDITOR 2D (CANVA STYLE) ================= -->
+        <section id="tab-designer" class="space-y-4">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Panel Kawalan Kiri -->
-                <div class="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
-                    <h2 class="text-lg font-bold text-slate-900 border-b pb-2">Studio Kawalan Designer</h2>
+                
+                <!-- Kiri: Panel Alat & Tampal Data -->
+                <div class="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4 max-h-[85vh] overflow-y-auto">
+                    <h2 class="text-base font-bold text-slate-900 border-b pb-2">Studio 2D ESKPRINT</h2>
 
                     <div>
                         <label class="block text-xs font-semibold text-slate-600 mb-1">1. Tampal Data WhatsApp Pelanggan</label>
-                        <textarea id="d_input_data" rows="4" placeholder="Tampal mesej dari WhatsApp di sini..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-                        <button onclick="parseWhatsApp()" class="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2 rounded-lg transition">Ekstrak Data Automatik</button>
+                        <textarea id="d_input_data" rows="3" placeholder="Tampal mesej di sini..." class="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></textarea>
+                        <button onclick="parseWhatsApp()" class="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2 rounded-lg transition">Auto-Masukkan ke Kanvas</button>
                     </div>
 
-                    <div class="space-y-3 border-t pt-3">
-                        <label class="block text-xs font-semibold text-slate-600">2. Muat Naik Background Kad</label>
+                    <div class="space-y-2 border-t pt-3">
+                        <label class="block text-xs font-semibold text-slate-600">2. Muat Naik Background</label>
+                        <input type="file" id="uploadBg" accept="image/*" onchange="loadCanvasBackground(event)" class="text-xs w-full text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700">
+                    </div>
+
+                    <!-- Panel Edit Objek yang Dipilih (Ala Canva Properties) -->
+                    <div id="propertyPanel" class="border-t pt-3 space-y-3 bg-slate-50 p-3 rounded-xl hidden">
+                        <label class="block text-xs font-bold text-indigo-700 uppercase">Tetapan Objek Terpilih</label>
                         <div>
-                            <span class="text-[11px] text-slate-500 block mb-1">Muka Depan (Front)</span>
-                            <input type="file" id="uploadFront" accept="image/*" onchange="loadBackground(event, 'previewFront')" class="text-xs w-full text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                            <span class="text-[11px] text-slate-600 block mb-1">Edit Teks</span>
+                            <input type="text" id="propText" oninput="updateSelectedText(this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs outline-none">
                         </div>
-                        <div>
-                            <span class="text-[11px] text-slate-500 block mb-1">Muka Belakang (Back)</span>
-                            <input type="file" id="uploadBack" accept="image/*" onchange="loadBackground(event, 'previewBack')" class="text-xs w-full text-slate-500 file:mr-2 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <span class="text-[11px] text-slate-600 block mb-1">Jenis Font</span>
+                                <select id="propFont" onchange="updateSelectedFont(this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none">
+                                    <option value="Plus Jakarta Sans">Sans Standard</option>
+                                    <option value="Cinzel">Cinzel (Moden)</option>
+                                    <option value="Playfair Display">Playfair (Klasik)</option>
+                                    <option value="Great Vibes">Great Vibes (Berangkai)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-slate-600 block mb-1">Warna Teks</span>
+                                <input type="color" id="propColor" onchange="updateSelectedColor(this.value)" class="w-full h-8 bg-white border border-slate-300 rounded-lg cursor-pointer">
+                            </div>
                         </div>
+                        <button onclick="deleteSelectedObject()" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold py-1.5 rounded-lg transition">Padam Objek Ini</button>
                     </div>
 
                     <div class="border-t pt-3 space-y-2">
-                        <label class="block text-xs font-semibold text-slate-600">3. Tetapan Cetakan</label>
-                        <div class="flex items-center space-x-2">
-                            <input type="checkbox" id="chkJawi" checked onchange="updatePreviewText()" class="rounded text-indigo-600">
-                            <label for="chkJawi" class="text-xs text-slate-700">Papar Tulisan Jawi di Belakang</label>
-                        </div>
+                        <label class="block text-xs font-semibold text-slate-600">Tambah Blok Teks Manual</label>
+                        <button onclick="addNewText('Teks Baru')" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold py-2 rounded-lg transition">+ Tambah Teks</button>
                     </div>
 
-                    <button onclick="generateFinalPreview()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow">
-                        Jana Mesej Preview & Semakan Akhir
+                    <button onclick="exportCanvasImage()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition shadow">
+                        Muat Turun Hasil Design (PNG)
                     </button>
                 </div>
 
-                <!-- Panel Paparan Kanvas Sebelah-Menyebelah (Kanan) -->
-                <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col items-center justify-center">
-                    <h3 class="text-sm font-bold text-slate-700 mb-3">Pratonton Muka Depan & Belakang Kad</h3>
-                    
-                    <div class="flex flex-wrap justify-center gap-6 w-full">
-                        <!-- Kad Muka Depan -->
-                        <div class="relative w-64 h-96 bg-slate-200 rounded-lg shadow-inner overflow-hidden border border-slate-300 flex flex-col items-center justify-between p-4 text-center" id="cardFrontBox" style="background-size: cover; background-position: center;">
-                            <div id="previewFront" class="absolute inset-0 z-0 bg-white/80 flex flex-col justify-between p-4 text-slate-800">
-                                <div class="text-[11px] italic font-medium pt-2" id="out_tajuk">Undangan Majlis Walimatulurus</div>
-                                <div class="space-y-1 my-auto">
-                                    <div class="text-xl font-bold tracking-widest text-indigo-900" id="out_nick1">ATIKAH & AMIRUL</div>
-                                    <div class="text-[10px] text-slate-600" id="out_namapenuh">Nur Atikah & Mohamad Amirul Aiman</div>
-                                </div>
-                                <div class="text-[9px] pb-2 space-y-0.5">
-                                    <div id="out_tarikh" class="font-semibold">JUMAAT, 19 /9 /2025</div>
-                                    <div class="italic text-slate-500">“Dan kami telah menciptakan kamu berpasang-pasangan.”</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Kad Muka Belakang -->
-                        <div class="relative w-64 h-96 bg-slate-200 rounded-lg shadow-inner overflow-hidden border border-slate-300 flex flex-col justify-between p-3 text-[9px]" id="cardBackBox" style="background-size: cover; background-position: center;">
-                            <div id="previewBack" class="absolute inset-0 z-0 bg-white/80 flex flex-col justify-between p-3 text-slate-800 overflow-y-auto">
-                                <div>
-                                    <div class="text-center font-bold text-[10px]" id="out_jawi">بِسۡـــــــــمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـــــــيمِ</div>
-                                    <div class="text-center font-semibold text-slate-600 mt-0.5">Adnan Bin Che Hassan & Rahaya Binti Hussain</div>
-                                    <div class="text-center text-[8px] text-slate-500 mt-1">Dengan segala hormatnya menjemput Dato'/Datin/Tuan/Puan...</div>
-                                    <div class="text-center font-bold text-slate-900 mt-1" id="out_pasangan_belakang">NUR ATIKAH & MOHAMAD AMIRUL AIMAN</div>
-                                    <div class="text-center font-medium mt-1 text-[8px]" id="out_tarikh_belakang">Jumaat 19/9/2025</div>
-                                    <div class="text-center text-slate-600 mt-1 truncate" id="out_alamat">Lot 1469, Kampung Tunjong, Kota Bharu</div>
-                                </div>
-                                <div class="border-t pt-1 text-[7px] space-y-0.5 text-slate-700">
-                                    <div class="font-bold">No Tel Dihubungi:</div>
-                                    <div id="out_fon_list">1) Adnan - 0129550420<br>2) Rahaya - 0175192962<br>3) Atikah - 0129618764<br>4) Aiman - 01163686971</div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Kanan: Kanvas 2D Interaktif (Ala Canva Workspace) -->
+                <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col items-center justify-center min-h-[600px]">
+                    <div class="text-xs text-slate-400 mb-2">Workspace 2D (Klik mana-mana teks untuk ubah posisi, saiz, font, atau warna)</div>
+                    <div class="border border-slate-300 shadow-lg rounded-lg overflow-hidden">
+                        <canvas id="cardCanvas" width="450" height="650"></canvas>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <!-- ================= HALAMAN 3: TETAPAN (SETTINGS) ================= -->
+        <!-- ================= HALAMAN 3: TETAPAN ================= -->
         <section id="tab-settings" class="hidden space-y-4">
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-lg mx-auto space-y-4">
-                <h2 class="text-lg font-bold text-slate-900 border-b pb-2">Tetapan Sistem ESKPRINT</h2>
+                <h2 class="text-lg font-bold text-slate-900 border-b pb-2">Tetapan Sistem</h2>
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Nombor WhatsApp Admin (Penerima Tempahan)</label>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Nombor WhatsApp Admin</label>
                     <input type="text" id="setting_wa" value="60123456789" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none">
-                    <span class="text-[11px] text-slate-400 mt-1 block">Masukkan kod negara tanpa simbol '+' (Cth: 60123456789)</span>
                 </div>
-                <button onclick="saveSettings()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Simpan Tetapan</button>
+                <button onclick="saveSettings()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Simpan</button>
             </div>
         </section>
 
     </main>
 
     <script>
+        // Inisialisasi Canvas Fabric.js (Editor 2D)
+        let canvas = new fabric.Canvas('cardCanvas', {
+            backgroundColor: '#ffffff'
+        });
+
         // Tab Switcher
         function switchTab(tab) {
             document.getElementById('tab-client').classList.add('hidden');
@@ -228,79 +207,128 @@
             } else if(tab === 'designer') {
                 document.getElementById('tab-designer').classList.remove('hidden');
                 document.getElementById('btn-designer').className = "px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
+                canvas.calcOffset();
             } else if(tab === 'settings') {
                 document.getElementById('tab-settings').classList.remove('hidden');
                 document.getElementById('btn-settings').className = "px-3.5 py-1.5 rounded-lg text-sm font-semibold bg-indigo-600 text-white transition";
             }
         }
 
-        // Hantar Borang ke WhatsApp
-        function submitOrder(e) {
-            e.preventDefault();
-            const waAdmin = localStorage.getItem('esk_wa') || '60123456789';
+        // Event listener apabila objek di klik dalam kanvas
+        canvas.on('selection:created', function(e) { showProperties(e.selected[0]); });
+        canvas.on('selection:updated', function(e) { showProperties(e.selected[0]); });
+        canvas.on('selection:cleared', function() { document.getElementById('propertyPanel').classList.add('hidden'); });
 
-            const tajuk = document.getElementById('c_tajuk').value;
-            const ayah = document.getElementById('c_ayah').value;
-            const ibu = document.getElementById('c_ibu').value;
-            const p1 = document.getElementById('c_nama_p1').value;
-            const p2 = document.getElementById('c_nama_p2').value;
-            const nick1 = document.getElementById('c_nick1').value;
-            const tarikh = document.getElementById('c_tarikh').value;
-            const alamat = document.getElementById('c_alamat').value;
-            const masa = document.getElementById('c_masa').value;
-            const map = document.getElementById('c_map').value;
-
-            const f1 = document.getElementById('c_fon1').value;
-            const f2 = document.getElementById('c_fon2').value;
-            const f3 = document.getElementById('c_fon3').value;
-            const f4 = document.getElementById('c_fon4').value;
-
-            let text = `*TEMPAHAN KAD KAHWIN - ESKPRINT*%0A%0A` +
-                       `*Tajuk:* ${tajuk}%0A` +
-                       `*Ayah:* ${ayah}%0A` +
-                       `*Ibu:* ${ibu}%0A` +
-                       `*Pengantin 1:* ${p1}%0A` +
-                       `*Pengantin 2:* ${p2}%0A` +
-                       `*Nickname Depan:* ${nick1}%0A` +
-                       `*Tarikh:* ${tarikh}%0A` +
-                       `*Masa:* ${masa}%0A` +
-                       `*Alamat:* ${alamat}%0A` +
-                       `*Lokasi Maps:* ${map}%0A%0A` +
-                       `*No Telefon:*%0A${f1}%0A${f2}%0A${f3}%0A${f4}`;
-
-            window.open(`https://wa.me/${waAdmin}?text=${text}`, '_blank');
-        }
-
-        // Muat Naik Background untuk Studio Designer
-        function loadBackground(event, previewId) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    if(previewId === 'previewFront') {
-                        document.getElementById('cardFrontBox').style.backgroundImage = `url('${e.target.result}')`;
-                        document.getElementById('previewFront').style.backgroundColor = 'rgba(255,255,255,0.75)';
-                    } else {
-                        document.getElementById('cardBackBox').style.backgroundImage = `url('${e.target.result}')`;
-                        document.getElementById('previewBack').style.backgroundColor = 'rgba(255,255,255,0.75)';
-                    }
-                }
-                reader.readAsDataURL(file);
+        function showProperties(obj) {
+            if(obj && obj.type === 'i-text') {
+                document.getElementById('propertyPanel').classList.remove('hidden');
+                document.getElementById('propText').value = obj.text;
+                document.getElementById('propFont').value = obj.fontFamily;
+                document.getElementById('propColor').value = obj.fill;
             }
         }
 
-        // Simpan Tetapan
-        function saveSettings() {
-            const wa = document.getElementById('setting_wa').value;
-            localStorage.setItem('esk_wa', wa);
-            alert('Tetapan berjaya disimpan!');
+        function updateSelectedText(val) {
+            let activeObj = canvas.getActiveObject();
+            if (activeObj && activeObj.type === 'i-text') {
+                activeObj.set({ text: val });
+                canvas.renderAll();
+            }
         }
 
-        // Muat turun tetapan awal pada window load
+        function updateSelectedFont(val) {
+            let activeObj = canvas.getActiveObject();
+            if (activeObj && activeObj.type === 'i-text') {
+                activeObj.set({ fontFamily: val });
+                canvas.renderAll();
+            }
+        }
+
+        function updateSelectedColor(val) {
+            let activeObj = canvas.getActiveObject();
+            if (activeObj && activeObj.type === 'i-text') {
+                activeObj.set({ fill: val });
+                canvas.renderAll();
+            }
+        }
+
+        function deleteSelectedObject() {
+            let activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                canvas.remove(activeObj);
+                document.getElementById('propertyPanel').classList.add('hidden');
+            }
+        }
+
+        function addNewText(textStr) {
+            let text = new fabric.IText(textStr, {
+                left: 100,
+                top: 200,
+                fontSize: 16,
+                fill: '#1e293b',
+                fontFamily: 'Plus Jakarta Sans'
+            });
+            canvas.add(text);
+            canvas.setActiveObject(text);
+        }
+
+        // Muat Background ke Kanvas
+        function loadCanvasBackground(e) {
+            let reader = new FileReader();
+            reader.onload = function(f) {
+                fabric.Image.fromURL(f.target.result, function(img) {
+                    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                        scaleX: canvas.width / img.width,
+                        scaleY: canvas.height / img.height
+                    });
+                });
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+        // Ekstrak Data WhatsApp masuk ke kanvas automatik
+        function parseWhatsApp() {
+            let raw = document.getElementById('d_input_data').value;
+            // Contoh parsing ringkas atau tambah teks asas ke kanvas
+            addNewText("UNDANGAN MAJLIS WALIMATULURUS");
+            addNewText("ATIKAH & AMIRUL");
+            addNewText("Jumaat, 19/9/2025");
+            addNewText("Lot 1469, Kg Tunjong, Kota Bharu");
+            alert('Data berjaya dimasukkan ke kanvas! Anda boleh seret atau edit terus.');
+        }
+
+        // Export Hasil Design
+        function exportCanvasImage() {
+            let dataURL = canvas.toDataURL({ format: 'png', quality: 1.0 });
+            let link = document.createElement('a');
+            link.download = 'kad-kahwin-eskprint.png';
+            link.href = dataURL;
+            link.click();
+        }
+
+        // Hantar ke WhatsApp Pelanggan
+        function submitOrder(e) {
+            e.preventDefault();
+            const waAdmin = localStorage.getItem('esk_wa') || '60123456789';
+            let text = `*TEMPAHAN KAD KAHWIN - ESKPRINT*%0A%0A` +
+                       `Tajuk: ${document.getElementById('c_tajuk').value}%0A` +
+                       `Nama Ayah/Ibu: ${document.getElementById('c_ayah').value} & ${document.getElementById('c_ibu').value}%0A` +
+                       `Pengantin: ${document.getElementById('c_nama_p1').value} & ${document.getElementById('c_nama_p2').value}%0A` +
+                       `Tarikh: ${document.getElementById('c_tarikh').value}`;
+            window.open(`https://wa.me/${waAdmin}?text=${text}`, '_blank');
+        }
+
+        function saveSettings() {
+            localStorage.setItem('esk_wa', document.getElementById('setting_wa').value);
+            alert('Tetapan disimpan!');
+        }
+
         window.onload = function() {
             if(localStorage.getItem('esk_wa')) {
                 document.getElementById('setting_wa').value = localStorage.getItem('esk_wa');
             }
+            // Tambah teks permulaan contoh dlm kanvas
+            addNewText("ATIKAH & AMIRUL");
         }
     </script>
 </body>
