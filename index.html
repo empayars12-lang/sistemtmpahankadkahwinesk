@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ESKPRINT - Studio Pro v3.0</title>
+<title>ESKPRINT - Studio Pro v4.0</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
@@ -37,6 +37,8 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
 }
 .spin { animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+.tpl-card { background: white; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px; margin: 4px; display: flex; align-items: center; gap: 6px; font-size: 10px; }
+.tpl-card:hover { border-color: #6366f1; }
 </style>
 </head>
 <body class="bg-slate-100 min-h-screen text-slate-800">
@@ -45,7 +47,7 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
   <div class="max-w-[1400px] mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
     <div class="flex items-center space-x-2">
       <span class="bg-indigo-600 text-white px-3 py-1 rounded-lg font-bold text-lg tracking-wider">ESKPRINT</span>
-      <span class="text-sm text-slate-300 font-medium hidden sm:inline">Studio Pro v3.0 (300 DPI)</span>
+      <span class="text-sm text-slate-300 font-medium hidden sm:inline">Studio Pro v4.0</span>
     </div>
     <nav class="flex space-x-1 sm:space-x-2 mt-2 sm:mt-0">
       <button onclick="switchTab('client')" id="btn-client" class="px-3.5 py-1.5 rounded-lg text-sm font-semibold text-slate-300 hover:bg-slate-800 transition">Halaman Pelanggan</button>
@@ -57,7 +59,6 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
 
 <main class="max-w-[1400px] mx-auto p-4 sm:p-6">
 
-<!-- ================= HALAMAN PELANGGAN ================= -->
 <section id="tab-client" class="hidden space-y-6">
 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-2xl mx-auto">
   <div class="text-center mb-6">
@@ -79,20 +80,20 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
         </select></div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ayah</label><input type="text" id="c_ayah" required placeholder="Cth: ADNAN BIN CHE HASSAN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ibu</label><input type="text" id="c_ibu" required placeholder="Cth: RAHAYA BINTI HUSSAIN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ayah</label><input type="text" id="c_ayah" required placeholder="ADNAN BIN CHE HASSAN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Ibu</label><input type="text" id="c_ibu" required placeholder="RAHAYA BINTI HUSSAIN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Pengantin 1</label><input type="text" id="c_nama_p1" required placeholder="Cth: NUR ATIKAH BINTI ADNAN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Pasangan</label><input type="text" id="c_nama_p2" required placeholder="Cth: MOHAMAD AMIRUL AIMAN BIN ROSDI" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Pengantin 1</label><input type="text" id="c_nama_p1" required placeholder="NUR ATIKAH BINTI ADNAN" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nama Pasangan</label><input type="text" id="c_nama_p2" required placeholder="MOHAMAD AMIRUL AIMAN BIN ROSDI" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nickname</label><input type="text" id="c_nick" required placeholder="Cth: ATIKAH & AMIRUL" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tarikh Masihi</label><input type="text" id="c_tarikh_m" required placeholder="Cth: JUMAAT, 19 / 9 / 2025" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nickname</label><input type="text" id="c_nick" required placeholder="ATIKAH & AMIRUL" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tarikh Masihi</label><input type="text" id="c_tarikh_m" required placeholder="JUMAAT, 19 / 9 / 2025" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tarikh Hijrah</label><input type="text" id="c_tarikh_h" required placeholder="Cth: 26 RABIULAWAL (1447H)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
-      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Masa Majlis</label><input type="text" id="c_masa" required placeholder="Cth: 12.00 TGHRI - 6.00 PETANG" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tarikh Hijrah</label><input type="text" id="c_tarikh_h" required placeholder="26 RABIULAWAL (1447H)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
+      <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Masa Majlis</label><input type="text" id="c_masa" required placeholder="12.00 TGHRI - 6.00 PETANG" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
     </div>
     <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Alamat</label><textarea id="c_alamat" rows="2" required placeholder="Alamat penuh majlis" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></textarea></div>
     <div><label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Link Maps/Waze</label><input type="url" id="c_map" required placeholder="https://maps.app.goo.gl/..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-indigo-500"></div>
@@ -110,25 +111,21 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
 </div>
 </section>
 
-<!-- ================= STUDIO DESIGNER ================= -->
 <section id="tab-designer" class="space-y-4">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-<!-- LEFT PANEL -->
 <div class="lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-200 max-h-[90vh] overflow-y-auto">
   <div class="p-4 space-y-3">
     <div class="flex items-center justify-between border-b pb-2">
       <h2 class="text-base font-bold text-slate-900">Kawalan Studio Pro</h2>
-      <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-bold">v3.0</span>
+      <span class="text-[10px] bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded font-bold">v4.0</span>
     </div>
 
-    <!-- UNDO / REDO BAR -->
     <div class="flex gap-1">
       <button onclick="undo()" id="btnUndo" class="btn-tool flex-1" disabled title="Ctrl+Z">↶ Undo</button>
       <button onclick="redo()" id="btnRedo" class="btn-tool flex-1" disabled title="Ctrl+Shift+Z">↷ Redo</button>
     </div>
 
-    <!-- 1. IMPORT WHATSAPP -->
     <details open class="border-t pt-2">
       <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">1. Import WhatsApp</summary>
       <div class="mt-2 space-y-2">
@@ -137,11 +134,9 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
       </div>
     </details>
 
-    <!-- 2. BACKGROUND -->
     <details open class="border-t pt-2">
       <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">2. Template & Background</summary>
       <div class="mt-2 space-y-2">
-        <!-- FRONT -->
         <div>
           <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Muka Depan:</span>
           <div id="bgFrontPreview" class="hidden space-y-1">
@@ -153,7 +148,6 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
           </div>
           <input type="file" id="bgFrontInput" accept="image/*" onchange="handleBgUpload(event, 'front')" class="text-[10px] w-full file:py-1 file:px-2 file:rounded file:border-0 file:bg-slate-100 cursor-pointer">
         </div>
-        <!-- BACK -->
         <div>
           <span class="text-[10px] text-slate-500 block mb-1 font-semibold">Muka Belakang:</span>
           <div id="bgBackPreview" class="hidden space-y-1">
@@ -170,24 +164,32 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
           <button type="button" onclick="setMonochrome(true)" class="btn-tool flex-1">Hitam</button>
         </div>
         <div class="flex items-center gap-2 text-[10px]">
-          <span class="text-slate-500">Latar Depan:</span>
-          <input type="color" id="bgColorFront" value="#ffffff" oninput="setBgColor('front', this.value)" class="w-8 h-7 rounded border border-slate-300 cursor-pointer">
+          <span class="text-slate-500">Depan:</span>
+          <input type="color" id="bgColorFront" value="#ffffff" oninput="setBgColor('front', this.value)" class="w-8 h-7 rounded border cursor-pointer">
           <span class="text-slate-500">Belakang:</span>
-          <input type="color" id="bgColorBack" value="#ffffff" oninput="setBgColor('back', this.value)" class="w-8 h-7 rounded border border-slate-300 cursor-pointer">
+          <input type="color" id="bgColorBack" value="#ffffff" oninput="setBgColor('back', this.value)" class="w-8 h-7 rounded border cursor-pointer">
         </div>
       </div>
     </details>
 
-    <!-- PROPERTIES (DYNAMIC) -->
     <div id="editorProPanel" class="border-t pt-2 bg-indigo-50/80 p-3 rounded-xl border border-indigo-200 hidden space-y-2">
       <div class="flex justify-between items-center">
         <span class="text-xs font-bold text-indigo-900 uppercase">✏️ Sifat Objek</span>
         <span id="activeSideBadge" class="text-[10px] bg-indigo-600 text-white px-2 py-0.5 rounded-full font-semibold">Depan</span>
       </div>
 
+      <div id="multiEditControls" class="hidden space-y-2 bg-amber-50 border border-amber-300 rounded-lg p-2">
+        <div class="text-xs text-amber-800 font-bold" id="multiCountLabel">0 objek dipilih</div>
+        <div class="grid grid-cols-2 gap-1">
+          <button onclick="groupSelected()" class="btn-tool">🔗 Group</button>
+          <button onclick="ungroupSelected()" class="btn-tool">🔓 Ungroup</button>
+        </div>
+        <p class="text-[9px] text-amber-700 italic">Shift+klik untuk tambah. Drag kosong = marquee select.</p>
+      </div>
+
       <div class="grid grid-cols-4 gap-1">
-        <button onclick="bringForward()" title="Naik Lapisan" class="btn-tool">⬆</button>
-        <button onclick="sendBackward()" title="Turun Lapisan" class="btn-tool">⬇</button>
+        <button onclick="bringForward()" title="Ke Atas" class="btn-tool">⬆</button>
+        <button onclick="sendBackward()" title="Ke Bawah" class="btn-tool">⬇</button>
         <button onclick="duplicateSelected()" title="Duplicate (Ctrl+D)" class="btn-tool">📋</button>
         <button onclick="deleteSelected()" title="Padam (Del)" class="btn-tool" style="color:#e11d48">🗑</button>
       </div>
@@ -217,18 +219,17 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
           </select>
           <input type="number" id="propSize" min="6" max="200" oninput="updateSelectedProp('fontSize', parseInt(this.value)||12)" class="bg-white border border-slate-300 rounded px-2 py-1 text-[10px]" placeholder="Saiz">
         </div>
-        <!-- FONT STRETCH VERTICAL (NEW) -->
         <div>
           <label class="text-[10px] font-semibold text-slate-600 block mb-1 flex justify-between">
             <span>↕ Stretch Vertikal Font</span>
             <span id="propFontScaleYVal" class="text-indigo-600 font-bold">1.00×</span>
           </label>
           <input type="range" id="propFontScaleY" min="0.3" max="3" step="0.05" oninput="updateSelectedProp('fontScaleY', parseFloat(this.value)); document.getElementById('propFontScaleYVal').textContent = parseFloat(this.value).toFixed(2)+'×'" class="w-full accent-indigo-600">
-          <p class="text-[8px] text-slate-500 italic">Tip: Tarik handle atas/bawah pada kotak teks untuk stretch</p>
+          <p class="text-[8px] text-slate-500 italic">Tarik handle atas/bawah (oren) untuk stretch</p>
         </div>
         <div class="grid grid-cols-2 gap-1.5">
           <div><label class="text-[9px] text-slate-500">Line Height</label><input type="number" id="propLineH" min="0.8" max="3" step="0.05" oninput="updateSelectedProp('lineHeight', parseFloat(this.value)||1.25)" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-[10px]"></div>
-          <div><label class="text-[9px] text-slate-500">Letter Spacing</label><input type="number" id="propLetterSp" min="-5" max="20" step="0.5" oninput="updateSelectedProp('letterSpacing', parseFloat(this.value)||0)" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-[10px]"></div>
+          <div><label class="text-[9px] text-slate-500">Letter Sp</label><input type="number" id="propLetterSp" min="-5" max="20" step="0.5" oninput="updateSelectedProp('letterSpacing', parseFloat(this.value)||0)" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-[10px]"></div>
         </div>
         <div class="grid grid-cols-3 gap-1">
           <button onclick="updateSelectedProp('align', 'left')" class="btn-tool">Kiri</button>
@@ -262,7 +263,6 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
       <button onclick="toggleLock()" id="btnLock" class="btn-tool w-full">🔓 Kunci/Tidak Kunci</button>
     </div>
 
-    <!-- 3. ADD ELEMENTS -->
     <details open class="border-t pt-2">
       <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">3. Tambah Elemen</summary>
       <div class="mt-2 space-y-2">
@@ -274,16 +274,14 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
           <button onclick="addShape('line')" class="btn-tool">— Line</button>
           <button onclick="addQRCode()" class="btn-tool">🔲 QR Code</button>
         </div>
-        <!-- NEW: IMAGE STUDIO BUTTON -->
         <label class="block w-full cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-xs font-bold py-2.5 rounded-xl text-center transition">
           🎨 Upload Gambar (Studio AI + Brush)
           <input type="file" accept="image/*" onchange="handleImageStudioUpload(event)" class="hidden">
         </label>
-        <div><span class="text-[10px] text-slate-500 block mb-1">Quick Upload Peta/QR (tanpa edit):</span><input type="file" accept="image/*" onchange="handleOverlayUpload(event)" class="text-[10px] w-full file:py-1 file:px-2 file:rounded file:border-0 file:bg-emerald-50 file:text-emerald-700 cursor-pointer"></div>
+        <div><span class="text-[10px] text-slate-500 block mb-1">Quick Upload:</span><input type="file" accept="image/*" onchange="handleOverlayUpload(event)" class="text-[10px] w-full file:py-1 file:px-2 file:rounded file:border-0 file:bg-emerald-50 file:text-emerald-700 cursor-pointer"></div>
       </div>
     </details>
 
-    <!-- 4. LAYERS -->
     <details open class="border-t pt-2">
       <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">4. Lapisan (Layers)</summary>
       <div class="mt-2">
@@ -295,21 +293,27 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
       </div>
     </details>
 
-    <!-- 5. FONT DETECT (NEW) -->
     <details class="border-t pt-2">
       <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">5. Font Komputer</summary>
       <div class="mt-2 space-y-2">
-        <button onclick="detectLocalFonts()" class="w-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 rounded-xl">
-          🔍 Kesan Font Dalam Komputer
-        </button>
-        <p class="text-[9px] text-slate-500 leading-tight">Klik → Benarkan akses. Font yang dijumpai akan ditambah ke dropdown font. (Chrome/Edge sahaja)</p>
+        <button onclick="detectLocalFonts()" class="w-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2 rounded-xl">🔍 Kesan Font Komputer</button>
+        <p class="text-[9px] text-slate-500 leading-tight">Chrome/Edge sahaja. Benarkan akses bila diminta.</p>
         <div id="fontDetectStatus" class="text-[10px] text-emerald-600 font-semibold hidden"></div>
       </div>
     </details>
 
-    <!-- 6. EXPORT -->
     <details open class="border-t pt-2">
-      <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">6. Eksport & Kongsi</summary>
+      <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">6. Template Preset</summary>
+      <div class="mt-2 space-y-2">
+        <button onclick="saveCurrentAsTemplate()" class="w-full bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold py-2 rounded-xl">💾 Simpan Design Semasa</button>
+        <div id="templateList" class="bg-white border border-slate-200 rounded-lg max-h-44 overflow-y-auto">
+          <div class="p-2 text-[10px] text-slate-400 text-center">Tiada template</div>
+        </div>
+      </div>
+    </details>
+
+    <details open class="border-t pt-2">
+      <summary class="cursor-pointer text-xs font-bold text-slate-700 py-1">7. Eksport & Kongsi</summary>
       <div class="mt-2 space-y-2">
         <button onclick="export300DPIPreview()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl">📥 Muat Turun 300 DPI (2 Muka)</button>
         <div class="grid grid-cols-2 gap-1">
@@ -322,10 +326,9 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
   </div>
 </div>
 
-<!-- RIGHT PANEL: CANVAS -->
 <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 flex flex-col">
   <div class="flex items-center justify-between mb-3 pb-2 border-b">
-    <div class="text-xs font-bold text-slate-700">Kanvas Editor (Klik & Seret)</div>
+    <div class="text-xs font-bold text-slate-700">Kanvas Editor</div>
     <div class="flex items-center gap-1">
       <button onclick="setZoom(state.zoom - 0.1)" class="btn-tool">−</button>
       <span id="zoomLabel" class="text-[11px] font-mono text-slate-600 w-12 text-center">100%</span>
@@ -353,13 +356,12 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
   </div>
 
   <div class="text-[10px] text-slate-400 text-center pt-2 border-t leading-relaxed">
-    <kbd>Del</kbd> padam · <kbd>Ctrl+D</kbd> duplikasi · <kbd>Ctrl+Z</kbd> undo · <kbd>Ctrl+Shift+Z</kbd> redo · <kbd>Ctrl+Y</kbd> redo · <kbd>↑↓←→</kbd> gerak · <kbd>Shift+↑</kbd> gerak laju · <kbd>Esc</kbd> deselect · <kbd>Ctrl+G</kbd> grid · <kbd>Ctrl+0</kbd> zoom reset
+    <kbd>Shift+klik</kbd> multi-select · <kbd>Drag kosong</kbd> marquee · <kbd>Ctrl+G</kbd> group · <kbd>Ctrl+Shift+G</kbd> ungroup · <kbd>Ctrl+D</kbd> duplicate · <kbd>Ctrl+Z</kbd> undo · <kbd>Ctrl+Shift+Z</kbd> redo · <kbd>Del</kbd> padam · <kbd>↑↓←→</kbd> gerak · <kbd>Esc</kbd> deselect
   </div>
 </div>
 </div>
 </section>
 
-<!-- TETAPAN -->
 <section id="tab-settings" class="hidden space-y-4">
 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 max-w-lg mx-auto space-y-4">
   <h2 class="text-lg font-bold text-slate-900 border-b pb-2">Tetapan Sistem</h2>
@@ -370,59 +372,41 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
 
 </main>
 
-<!-- ================= IMAGE STUDIO MODAL (NEW) ================= -->
 <div id="imgStudioModal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] overflow-hidden flex flex-col">
     <div class="bg-slate-900 text-white px-4 py-3 flex justify-between items-center">
-      <h3 class="font-bold text-sm">🎨 Image Studio — Sunting Gambar Sebelum Letak</h3>
+      <h3 class="font-bold text-sm">🎨 Image Studio</h3>
       <button onclick="imgStudioClose()" class="text-white text-2xl leading-none hover:text-rose-300">×</button>
     </div>
     <div class="flex-1 overflow-y-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- TOOLS -->
       <div class="md:col-span-1 space-y-2 bg-slate-50 p-3 rounded-lg">
         <div class="text-xs font-bold text-slate-700 uppercase border-b pb-1">🛠 Alat</div>
-
-        <button onclick="imgStudioMagic()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg">
-          ✨ Magic Remove BG (Instan)
-        </button>
+        <button onclick="imgStudioMagic()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg">✨ Magic Remove BG</button>
         <div class="flex gap-1 items-center text-[10px]">
-          <label>Toleransi:</label>
+          <label>Tol:</label>
           <input type="range" id="imgTolerance" min="5" max="100" value="30" class="flex-1" oninput="document.getElementById('imgToleranceVal').textContent=this.value">
           <span id="imgToleranceVal" class="font-mono w-6 text-right">30</span>
         </div>
-        <p class="text-[8px] text-slate-500 -mt-1">Tinggi = buang lebih banyak</p>
-
-        <button onclick="imgStudioAI()" id="imgAiBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold py-2 rounded-lg">
-          🤖 AI Remove BG (Bijak)
-        </button>
-        <p class="text-[8px] text-slate-500 leading-tight">* Perlu internet kali pertama (~50MB). Seterusnya offline auto.</p>
-
-        <div class="border-t pt-2 mt-1">
-          <button onclick="imgStudioToggleBrush()" id="imgBrushBtn" class="w-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2 rounded-lg">
-            🖌 Brush Padam (Manual)
-          </button>
+        <button onclick="imgStudioAI()" id="imgAiBtn" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold py-2 rounded-lg">🤖 AI Remove BG</button>
+        <p class="text-[8px] text-slate-500 leading-tight">* Perlu internet kali pertama (~50MB)</p>
+        <div class="border-t pt-2">
+          <button onclick="imgStudioToggleBrush()" id="imgBrushBtn" class="w-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2 rounded-lg">🖌 Brush Padam</button>
           <div class="flex gap-1 items-center text-[10px] mt-1">
             <label>Saiz:</label>
             <input type="range" id="imgBrushSize" min="5" max="80" value="25" class="flex-1" oninput="imgStudio.brushSize=parseInt(this.value); document.getElementById('imgBrushSizeVal').textContent=this.value">
             <span id="imgBrushSizeVal" class="font-mono w-6 text-right">25</span>
           </div>
         </div>
-
-        <button onclick="imgStudioReset()" class="w-full bg-slate-500 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded-lg mt-2">
-          ↺ Reset (Kembali Asal)
-        </button>
-
+        <button onclick="imgStudioReset()" class="w-full bg-slate-500 hover:bg-slate-600 text-white text-xs font-bold py-2 rounded-lg mt-2">↺ Reset</button>
         <div class="border-t pt-2 mt-2">
           <label class="text-xs font-bold text-slate-700">Letak di:</label>
           <div class="space-y-1 mt-1">
-            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="front"> Muka Depan</label>
-            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="back" checked> Muka Belakang</label>
-            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="both"> Kedua-dua Muka</label>
+            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="front"> Depan</label>
+            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="back" checked> Belakang</label>
+            <label class="flex items-center gap-2 text-xs cursor-pointer"><input type="radio" name="imgSide" value="both"> Kedua-dua</label>
           </div>
         </div>
       </div>
-
-      <!-- CANVAS -->
       <div class="md:col-span-2 flex flex-col items-center justify-center bg-slate-100 rounded-lg p-4 min-h-[400px]">
         <canvas id="imgStudioCanvas" class="max-w-full max-h-[500px] border-2 border-slate-300 rounded shadow"></canvas>
         <p id="imgStudioHint" class="text-[10px] text-slate-500 mt-2 italic text-center"></p>
@@ -436,9 +420,9 @@ kbd { padding: 1px 4px; background: #f1f5f9; border-radius: 3px; border: 1px sol
 </div>
 
 <script>
-// =========================================================================
-// EDITOR ENGINE v3.0
-// =========================================================================
+// =============================================================
+// EDITOR ENGINE v4.0
+// =============================================================
 let _uid = 0;
 const uid = () => 'i' + (++_uid);
 let _measureCtx = null;
@@ -449,10 +433,12 @@ function rotatePoint(px, py, cx, cy, deg) { const a = deg * Math.PI/180, cos = M
 const state = {
   front: { bg: null, bgColor: '#ffffff', bgSrc: null, items: [] },
   back: { bg: null, bgColor: '#ffffff', bgSrc: null, items: [] },
-  selectedSide: null, selectedIndex: -1,
-  mode: null, activeHandle: null, dragStart: null, itemStart: null, activeCanvas: null,
+  selectedSide: null, selectedIndices: [], selectedIndex: -1,
+  mode: null, activeHandle: null, dragStart: null, itemStarts: [], activeCanvas: null,
   zoom: 1, showGrid: false, layersSide: 'front',
-  history: [], historyIndex: -1
+  history: [], historyIndex: -1,
+  templates: [],
+  guides: [], marquee: null, marqueeStart: null, marqueeSide: null
 };
 
 let currentOrderData = {
@@ -470,11 +456,31 @@ let currentOrderData = {
   fon4: "4) AIMAN - 011 63686971"
 };
 
+// ===== SELECTION HELPERS =====
+function syncSelectedIndex() { state.selectedIndex = state.selectedIndices.length > 0 ? state.selectedIndices[state.selectedIndices.length - 1] : -1; }
+function getSelectedItems() {
+  if (!state.selectedSide) return [];
+  return state.selectedIndices.map(i => state[state.selectedSide].items[i]).filter(Boolean);
+}
+function isSelected(side, idx) { return state.selectedSide === side && state.selectedIndices.includes(idx); }
+function selectOnly(side, idx) {
+  state.selectedSide = side; state.selectedIndices = [idx]; syncSelectedIndex();
+}
+function toggleSelect(side, idx) {
+  if (state.selectedSide !== side) { selectOnly(side, idx); return; }
+  const arr = state.selectedIndices;
+  const pos = arr.indexOf(idx);
+  if (pos >= 0) { if (arr.length > 1) arr.splice(pos, 1); }
+  else arr.push(idx);
+  syncSelectedIndex();
+}
+function clearSelection() { state.selectedSide = null; state.selectedIndices = []; state.selectedIndex = -1; }
+
 // ===== HISTORY =====
 function snapshotState() {
   return {
-    front: { items: deepCloneItems(state.front.items), bg: state.front.bg, bgColor: state.front.bgColor, bgSrc: state.front.bgSrc },
-    back: { items: deepCloneItems(state.back.items), bg: state.back.bg, bgColor: state.back.bgColor, bgSrc: state.back.bgSrc }
+    front: { items: deepCloneItems(state.front.items), bgColor: state.front.bgColor, bgSrc: state.front.bgSrc },
+    back: { items: deepCloneItems(state.back.items), bgColor: state.back.bgColor, bgSrc: state.back.bgSrc }
   };
 }
 function pushHistory() {
@@ -492,15 +498,24 @@ function updateUndoRedoButtons() {
 function undo() { if (state.historyIndex <= 0) return; state.historyIndex--; restoreSnapshot(state.history[state.historyIndex]); updateUndoRedoButtons(); }
 function redo() { if (state.historyIndex >= state.history.length - 1) return; state.historyIndex++; restoreSnapshot(state.history[state.historyIndex]); updateUndoRedoButtons(); }
 function restoreSnapshot(snap) {
-  state.front.items = deepCloneItems(snap.front.items); state.front.bg = snap.front.bg; state.front.bgColor = snap.front.bgColor; state.front.bgSrc = snap.front.bgSrc;
-  state.back.items = deepCloneItems(snap.back.items); state.back.bg = snap.back.bg; state.back.bgColor = snap.back.bgColor; state.back.bgSrc = snap.back.bgSrc;
-  state.selectedIndex = -1; state.selectedSide = null;
+  ['front', 'back'].forEach(side => {
+    const data = snap[side];
+    state[side].items = deepCloneItems(data.items);
+    state[side].bgColor = data.bgColor;
+    state[side].bgSrc = data.bgSrc;
+    if (data.bgSrc) {
+      const img = new Image();
+      img.onload = () => { state[side].bg = img; renderSide(side); };
+      img.src = data.bgSrc;
+    } else { state[side].bg = null; }
+  });
+  clearSelection();
   document.getElementById('editorProPanel').classList.add('hidden');
   updateBgPreview('front'); updateBgPreview('back');
   renderAll(); updateLayersList();
 }
 
-// ===== TEXT WRAP + BBOX (WITH fontScaleY) =====
+// ===== TEXT WRAP + BBOX =====
 function wrapText(ctx, text, maxWidth) {
   const result = [];
   (text || '').split('\n').forEach(para => {
@@ -535,13 +550,11 @@ function computeBBox(item) {
   }
 }
 
-// ===== RENDER (WITH fontScaleY) =====
+// ===== RENDER =====
 function renderText(ctx, item) {
   const sy = item.fontScaleY || 1;
   ctx.save();
-  ctx.translate(0, item._by);
-  ctx.scale(1, sy);
-  ctx.translate(0, -item._by);
+  ctx.translate(0, item._by); ctx.scale(1, sy); ctx.translate(0, -item._by);
   ctx.font = `${item.italic?'italic ':''}${item.bold?'bold ':''}${item.fontSize}px "${item.fontFamily}", sans-serif`;
   if ('letterSpacing' in ctx) ctx.letterSpacing = (item.letterSpacing || 0) + 'px';
   ctx.fillStyle = item.fill; ctx.textBaseline = 'top';
@@ -564,14 +577,29 @@ function renderShape(ctx, item) {
   else if (item.shape === 'circle') { ctx.beginPath(); ctx.ellipse(item._bx+item._bw/2, item._by+item._bh/2, item._bw/2, item._bh/2, 0, 0, Math.PI*2); ctx.fill(); }
   else if (item.shape === 'line') { ctx.strokeStyle = item.fill; ctx.lineWidth = item.strokeWidth || 3; ctx.beginPath(); ctx.moveTo(item._bx, item._by+item._bh/2); ctx.lineTo(item._bx+item._bw, item._by+item._bh/2); ctx.stroke(); }
 }
+
+function getCombinedBBox(items) {
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  items.forEach(it => {
+    computeBBox(it);
+    minX = Math.min(minX, it._bx);
+    minY = Math.min(minY, it._by);
+    maxX = Math.max(maxX, it._bx + it._bw);
+    maxY = Math.max(maxY, it._by + it._bh);
+  });
+  return { minX, minY, maxX, maxY, w: maxX - minX, h: maxY - minY };
+}
+
 function renderSide(side, isExport = false) {
   const canvas = document.getElementById(side === 'front' ? 'canvasFront' : 'canvasBack');
   const ctx = canvas.getContext('2d');
   const data = state[side];
   const S = canvas.width / 360;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   if (data.bg) ctx.drawImage(data.bg, 0, 0, canvas.width, canvas.height);
   else { ctx.fillStyle = data.bgColor || '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+
   if (!isExport && state.showGrid) {
     ctx.save(); ctx.scale(S, S);
     ctx.strokeStyle = 'rgba(99,102,241,0.18)'; ctx.lineWidth = 0.5;
@@ -579,6 +607,7 @@ function renderSide(side, isExport = false) {
     for (let y = 0; y <= 540; y += 20) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(360, y); ctx.stroke(); }
     ctx.restore();
   }
+
   ctx.save(); ctx.scale(S, S);
   data.items.forEach(item => {
     if (item.visible === false) return;
@@ -593,15 +622,56 @@ function renderSide(side, isExport = false) {
     ctx.restore();
   });
   ctx.restore();
-  if (!isExport && state.selectedSide === side && state.selectedIndex >= 0 && state.selectedIndex < data.items.length) {
+
+  // Selection rendering
+  if (!isExport && state.selectedSide === side && state.selectedIndices.length > 0) {
     ctx.save(); ctx.scale(S, S);
-    drawSelection(ctx, data.items[state.selectedIndex]);
+    if (state.selectedIndices.length === 1) {
+      const item = data.items[state.selectedIndices[0]];
+      if (item) drawSelection(ctx, item);
+    } else {
+      const items = state.selectedIndices.map(i => data.items[i]).filter(Boolean);
+      if (items.length > 0) {
+        const bb = getCombinedBBox(items);
+        ctx.strokeStyle = '#4f46e5'; ctx.lineWidth = 1.5; ctx.setLineDash([6, 3]);
+        ctx.strokeRect(bb.minX - 5, bb.minY - 5, bb.w + 10, bb.h + 10);
+        ctx.setLineDash([]);
+        items.forEach(it => {
+          ctx.strokeStyle = 'rgba(79,70,229,0.35)'; ctx.lineWidth = 0.5;
+          ctx.strokeRect(it._bx, it._by, it._bw, it._bh);
+        });
+      }
+    }
+    ctx.restore();
+  }
+
+  // Smart guides
+  if (!isExport && state.guides && state.guides.length > 0) {
+    ctx.save(); ctx.scale(S, S);
+    ctx.strokeStyle = '#ec4899'; ctx.lineWidth = 1 / S; ctx.setLineDash([6/S, 4/S]);
+    state.guides.forEach(g => {
+      ctx.beginPath();
+      if (g.type === 'v') { ctx.moveTo(g.x, 0); ctx.lineTo(g.x, 540); }
+      else { ctx.moveTo(0, g.y); ctx.lineTo(360, g.y); }
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
+
+  // Marquee rectangle
+  if (!isExport && state.marquee && state.marqueeSide === side) {
+    const m = state.marquee;
+    ctx.save(); ctx.scale(S, S);
+    ctx.fillStyle = 'rgba(99,102,241,0.12)';
+    ctx.strokeStyle = '#6366f1'; ctx.lineWidth = 1/S; ctx.setLineDash([4/S, 3/S]);
+    ctx.fillRect(m.x1, m.y1, m.x2 - m.x1, m.y2 - m.y1);
+    ctx.strokeRect(m.x1, m.y1, m.x2 - m.x1, m.y2 - m.y1);
     ctx.restore();
   }
 }
 function renderAll(isExport = false) { renderSide('front', isExport); renderSide('back', isExport); }
 
-// ===== SELECTION HANDLES =====
+// ===== HANDLES =====
 function getHandlePositionsLocal(item) {
   const x = item._bx, y = item._by, w = item._bw, h = item._bh;
   const z = state.zoom || 1, ro = 22 / z;
@@ -625,28 +695,23 @@ function drawSelection(ctx, item) {
   ctx.strokeRect(item._bx, item._by, item._bw, item._bh);
   ctx.setLineDash([]);
   const handles = getHandlePositionsLocal(item);
-  ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#4f46e5'; ctx.lineWidth = 1.5/z;
+  ctx.lineWidth = 1.5/z;
   handles.forEach(h => {
     if (h.type === 'rotate') {
+      ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#4f46e5';
       ctx.beginPath(); ctx.moveTo(item._bx + item._bw/2, item._by); ctx.lineTo(h.x, h.y); ctx.stroke();
       ctx.beginPath(); ctx.arc(h.x, h.y, 5/z, 0, Math.PI*2); ctx.fill(); ctx.stroke();
     } else {
-      // Highlight N/S as "stretch" handles for text
-      if (item.type === 'text' && (h.type === 'n' || h.type === 's')) {
-        ctx.fillStyle = '#f59e0b';
-      } else {
-        ctx.fillStyle = '#ffffff';
-      }
+      if (item.type === 'text' && (h.type === 'n' || h.type === 's')) { ctx.fillStyle = '#f59e0b'; ctx.strokeStyle = '#b45309'; }
+      else { ctx.fillStyle = '#ffffff'; ctx.strokeStyle = '#4f46e5'; }
       ctx.fillRect(h.x - hs, h.y - hs, hs*2, hs*2); ctx.strokeRect(h.x - hs, h.y - hs, hs*2, hs*2);
     }
   });
   ctx.restore();
 }
-
-// ===== HIT TEST =====
 function hitTestHandle(side, mx, my) {
-  if (state.selectedSide !== side || state.selectedIndex < 0) return null;
-  const item = state[side].items[state.selectedIndex];
+  if (state.selectedSide !== side || state.selectedIndices.length !== 1) return null;
+  const item = state[side].items[state.selectedIndices[0]];
   if (!item || item.locked) return null;
   const z = state.zoom || 1, th = 12/z;
   for (const h of getHandlePositionsWorld(item)) {
@@ -660,18 +725,64 @@ function hitTestItem(item, mx, my) {
   return l.x >= item._bx && l.x <= item._bx + item._bw && l.y >= item._by && l.y <= item._by + item._bh;
 }
 
-// ===== MOUSE / POINTER =====
+// ===== SMART SNAP =====
+function computeSnap(side, indices, rawDx, rawDy) {
+  const items = state[side].items;
+  const draggedSet = new Set(indices);
+  const threshold = 6;
+  const draggedItems = indices.map(i => items[i]).filter(Boolean);
+  if (!draggedItems.length) return { dx: rawDx, dy: rawDy, guides: [] };
+
+  const bb = getCombinedBBox(draggedItems);
+  const minX = bb.minX + rawDx, maxX = bb.maxX + rawDx, ctrX = (minX + maxX) / 2;
+  const minY = bb.minY + rawDy, maxY = bb.maxY + rawDy, ctrY = (minY + maxY) / 2;
+
+  const vLines = [{ v: 0, s: 'canvas' }, { v: 180, s: 'canvas' }, { v: 360, s: 'canvas' }];
+  const hLines = [{ v: 0, s: 'canvas' }, { v: 270, s: 'canvas' }, { v: 540, s: 'canvas' }];
+  items.forEach((it, i) => {
+    if (draggedSet.has(i) || it.visible === false) return;
+    computeBBox(it);
+    vLines.push({ v: it._bx, s: 'item' }, { v: it._bx + it._bw/2, s: 'item' }, { v: it._bx + it._bw, s: 'item' });
+    hLines.push({ v: it._by, s: 'item' }, { v: it._by + it._bh/2, s: 'item' }, { v: it._by + it._bh, s: 'item' });
+  });
+
+  let bestDX = 0, bestDistX = threshold + 1, guideX = null;
+  [minX, ctrX, maxX].forEach(val => {
+    vLines.forEach(L => {
+      const d = L.v - val;
+      if (Math.abs(d) < bestDistX) { bestDistX = Math.abs(d); bestDX = d; guideX = L.v; }
+    });
+  });
+
+  let bestDY = 0, bestDistY = threshold + 1, guideY = null;
+  [minY, ctrY, maxY].forEach(val => {
+    hLines.forEach(L => {
+      const d = L.v - val;
+      if (Math.abs(d) < bestDistY) { bestDistY = Math.abs(d); bestDY = d; guideY = L.v; }
+    });
+  });
+
+  const guides = [];
+  if (guideX !== null) guides.push({ type: 'v', x: guideX });
+  if (guideY !== null) guides.push({ type: 'h', y: guideY });
+  return { dx: rawDx + bestDX, dy: rawDy + bestDY, guides };
+}
+
+// ===== MOUSE EVENTS =====
 function getMouseDesign(canvas, e) {
   const rect = canvas.getBoundingClientRect();
   return { x: (e.clientX - rect.left) / state.zoom, y: (e.clientY - rect.top) / state.zoom };
 }
 function attachCanvasEvents(side) {
   const canvas = document.getElementById(side === 'front' ? 'canvasFront' : 'canvasBack');
+
   canvas.addEventListener('pointerdown', (e) => {
     e.preventDefault();
     canvas.setPointerCapture(e.pointerId);
     const { x, y } = getMouseDesign(canvas, e);
     state.activeCanvas = canvas;
+
+    // 1. Handle hit (single-select only)
     if (state.selectedSide) {
       const curCanvas = document.getElementById(state.selectedSide === 'front' ? 'canvasFront' : 'canvasBack');
       const cp = getMouseDesign(curCanvas, e);
@@ -683,6 +794,8 @@ function attachCanvasEvents(side) {
         return;
       }
     }
+
+    // 2. Item hit
     const items = state[side].items;
     let found = -1;
     for (let i = items.length - 1; i >= 0; i--) {
@@ -691,62 +804,115 @@ function attachCanvasEvents(side) {
       computeBBox(it);
       if (hitTestItem(it, x, y)) { found = i; break; }
     }
+
+    const shift = e.shiftKey || e.ctrlKey || e.metaKey;
+
     if (found >= 0) {
-      state.selectedSide = side; state.selectedIndex = found;
       const item = items[found];
-      if (!item.locked) {
+      // If grouped, select whole group
+      if (item.groupId) {
+        const groupIndices = items.map((it, i) => it.groupId === item.groupId ? i : -1).filter(i => i >= 0);
+        if (shift && state.selectedSide === side) {
+          // Toggle group
+          const allSelected = groupIndices.every(i => state.selectedIndices.includes(i));
+          if (allSelected) state.selectedIndices = state.selectedIndices.filter(i => !groupIndices.includes(i));
+          else groupIndices.forEach(i => { if (!state.selectedIndices.includes(i)) state.selectedIndices.push(i); });
+          syncSelectedIndex();
+        } else {
+          state.selectedSide = side;
+          state.selectedIndices = groupIndices;
+          syncSelectedIndex();
+        }
+      } else if (shift && state.selectedSide === side) {
+        toggleSelect(side, found);
+      } else if (!isSelected(side, found) || state.selectedSide !== side) {
+        selectOnly(side, found);
+      }
+      // Start drag
+      const selItems = state.selectedIndices.map(i => items[i]).filter(it => it && !it.locked);
+      if (selItems.length > 0) {
         state.mode = 'drag';
         state.dragStart = { mx: x, my: y };
-        state.itemStart = { x: item.x, y: item.y };
+        state.itemStarts = state.selectedIndices.map(i => ({ idx: i, x: items[i].x, y: items[i].y }));
       }
-      updateEditorPanel(); updateLayersList();
     } else {
-      state.selectedSide = null; state.selectedIndex = -1;
-      document.getElementById('editorProPanel').classList.add('hidden');
-      updateLayersList();
+      // Start marquee
+      if (!shift) clearSelection();
+      state.mode = 'marquee';
+      state.marqueeStart = { x, y };
+      state.marqueeSide = side;
+      state.marquee = null;
     }
-    renderAll();
+
+    updateEditorPanel(); updateLayersList(); renderAll();
   });
+
   canvas.addEventListener('pointermove', (e) => {
     if (!state.mode || state.activeCanvas !== canvas) return;
     const { x: mx, y: my } = getMouseDesign(canvas, e);
-    const side = state.selectedSide;
-    const item = state[side]?.items[state.selectedIndex];
-    if (!item) return;
+    const side = state.selectedSide || state.marqueeSide;
+    if (!side) return;
+
     if (state.mode === 'drag') {
-      let nx = state.itemStart.x + (mx - state.dragStart.mx);
-      let ny = state.itemStart.y + (my - state.dragStart.my);
-      const ccx = item._bw/2, ccy = item._bh/2;
-      if (Math.abs((nx+ccx) - 180) < 4) nx = 180 - ccx;
-      if (Math.abs((ny+ccy) - 270) < 4) ny = 270 - ccy;
-      item.x = nx; item.y = ny;
+      const items = state[side].items;
+      const rawDx = mx - state.dragStart.mx;
+      const rawDy = my - state.dragStart.my;
+      const snap = computeSnap(side, state.selectedIndices, rawDx, rawDy);
+      state.guides = snap.guides;
+      state.itemStarts.forEach(st => {
+        const it = items[st.idx];
+        if (it) { it.x = st.x + snap.dx; it.y = st.y + snap.dy; }
+      });
       renderSide(side);
     } else if (state.mode === 'resize') {
-      doResize(side, item, mx, my); renderSide(side);
+      const item = state[side].items[state.selectedIndices[0]];
+      if (item) { doResize(side, item, mx, my); renderSide(side); }
     } else if (state.mode === 'rotate') {
-      doRotate(side, item, mx, my, e.shiftKey); renderSide(side);
+      const item = state[side].items[state.selectedIndices[0]];
+      if (item) { doRotate(side, item, mx, my, e.shiftKey); renderSide(side); }
+    } else if (state.mode === 'marquee') {
+      state.marquee = {
+        x1: Math.min(state.marqueeStart.x, mx),
+        y1: Math.min(state.marqueeStart.y, my),
+        x2: Math.max(state.marqueeStart.x, mx),
+        y2: Math.max(state.marqueeStart.y, my)
+      };
+      renderSide(state.marqueeSide);
     }
   });
+
   canvas.addEventListener('pointerup', () => {
-    if (state.mode) {
+    if (state.mode === 'marquee' && state.marquee) {
+      const m = state.marquee;
+      if (m.x2 - m.x1 > 3 || m.y2 - m.y1 > 3) {
+        const items = state[state.marqueeSide].items;
+        const hits = [];
+        items.forEach((it, i) => {
+          if (it.visible === false) return;
+          computeBBox(it);
+          if (it._bx + it._bw >= m.x1 && it._bx <= m.x2 && it._by + it._bh >= m.y1 && it._by <= m.y2) hits.push(i);
+        });
+        if (hits.length > 0) {
+          state.selectedSide = state.marqueeSide;
+          state.selectedIndices = hits;
+          syncSelectedIndex();
+        }
+      }
+    } else if (state.mode === 'drag' || state.mode === 'resize' || state.mode === 'rotate') {
       pushHistory();
-      state.mode = null; state.activeCanvas = null;
-      updateEditorPanel();
     }
+    state.mode = null; state.activeCanvas = null;
+    state.guides = []; state.marquee = null; state.marqueeStart = null; state.marqueeSide = null;
+    updateEditorPanel(); updateLayersList(); renderAll();
   });
 }
 
-// ===== RESIZE / ROTATE (WITH FONT STRETCH) =====
+// ===== RESIZE / ROTATE =====
 function startResize(side, handle, mx, my) {
-  const item = state[side].items[state.selectedIndex];
+  const item = state[side].items[state.selectedIndices[0]];
   state.mode = 'resize'; state.activeHandle = handle;
   state.dragStart = { mx, my };
-  state.itemStart = {
-    x: item._bx, y: item._by, w: item._bw, h: item._bh,
-    cx: item._bx + item._bw/2, cy: item._by + item._bh/2,
-    rotation: item.rotation || 0,
-    sy: item.fontScaleY || 1
-  };
+  state.itemStart = { x: item._bx, y: item._by, w: item._bw, h: item._bh, cx: item._bx + item._bw/2, cy: item._by + item._bh/2, rotation: item.rotation || 0, sy: item.fontScaleY || 1 };
 }
 function doResize(side, item, mx, my) {
   const s = state.itemStart, handle = state.activeHandle;
@@ -754,34 +920,24 @@ function doResize(side, item, mx, my) {
   const dmx = mx - state.dragStart.mx, dmy = my - state.dragStart.my;
   const ldx = dmx * Math.cos(a) - dmy * Math.sin(a);
   const ldy = dmx * Math.sin(a) + dmy * Math.cos(a);
-
   if (item.type === 'text') {
-    // N/S handles = vertical font stretch (like Photoshop)
     if (handle === 'n' || handle === 's') {
       const baseH = s.h / s.sy;
-      let newBH;
-      if (handle === 's') {
-        newBH = s.h + ldy;
-      } else {
-        newBH = s.h - ldy;
-        item.y = s.y + (s.h - newBH);
-      }
+      let newBH = handle === 's' ? s.h + ldy : s.h - ldy;
+      if (handle === 'n') item.y = s.y + (s.h - newBH);
       newBH = Math.max(20, newBH);
       item.fontScaleY = newBH / baseH;
-      const slider = document.getElementById('propFontScaleY');
-      const label = document.getElementById('propFontScaleYVal');
+      const slider = document.getElementById('propFontScaleY'), label = document.getElementById('propFontScaleYVal');
       if (slider) slider.value = item.fontScaleY;
       if (label) label.textContent = item.fontScaleY.toFixed(2) + '×';
       return;
     }
-    // E/W/corners = width change (re-wrap)
     let nW = s.w;
     if (handle === 'e' || handle === 'ne' || handle === 'se') nW = s.w + ldx;
     if (handle === 'w' || handle === 'nw' || handle === 'sw') nW = s.w - ldx;
     nW = Math.max(nW, 40);
     item.width = nW;
-    if (handle === 'w' || handle === 'nw' || handle === 'sw') item.x = s.x + (s.w - nW);
-    else item.x = s.x;
+    item.x = (handle === 'w' || handle === 'nw' || handle === 'sw') ? s.x + (s.w - nW) : s.x;
   } else {
     let nW = s.w, nH = s.h, offX = 0, offY = 0;
     if (handle === 'e' || handle === 'ne' || handle === 'se') { nW = s.w + ldx; offX = ldx/2; }
@@ -792,13 +948,12 @@ function doResize(side, item, mx, my) {
     const ra = s.rotation * Math.PI/180;
     const wdx = offX * Math.cos(ra) - offY * Math.sin(ra);
     const wdy = offX * Math.sin(ra) + offY * Math.cos(ra);
-    const ncx = s.cx + wdx, ncy = s.cy + wdy;
     item.width = nW; item.height = nH;
-    item.x = ncx - nW/2; item.y = ncy - nH/2;
+    item.x = (s.cx + wdx) - nW/2; item.y = (s.cy + wdy) - nH/2;
   }
 }
 function startRotate(side, mx, my) {
-  const item = state[side].items[state.selectedIndex];
+  const item = state[side].items[state.selectedIndices[0]];
   state.mode = 'rotate';
   state.itemStart = { cx: item._bx + item._bw/2, cy: item._by + item._bh/2, rotation: item.rotation || 0 };
   state.dragStart = { angle: Math.atan2(my - state.itemStart.cy, mx - state.itemStart.cx) };
@@ -817,11 +972,21 @@ function doRotate(side, item, mx, my, snap) {
 // ===== PROPERTIES PANEL =====
 function updateEditorPanel() {
   const panel = document.getElementById('editorProPanel');
-  if (!state.selectedSide || state.selectedIndex < 0) { panel.classList.add('hidden'); return; }
-  const item = state[state.selectedSide].items[state.selectedIndex];
+  const n = state.selectedIndices.length;
+  if (!state.selectedSide || n === 0) { panel.classList.add('hidden'); return; }
+  const item = state[state.selectedSide].items[state.selectedIndices[0]];
   if (!item) { panel.classList.add('hidden'); return; }
   panel.classList.remove('hidden');
   document.getElementById('activeSideBadge').innerText = state.selectedSide === 'front' ? 'Depan' : 'Belakang';
+  const isMulti = n > 1;
+  document.getElementById('multiEditControls').classList.toggle('hidden', !isMulti);
+  if (isMulti) {
+    document.getElementById('textEditControls').classList.add('hidden');
+    document.getElementById('imageEditControls').classList.add('hidden');
+    document.getElementById('shapeEditControls').classList.add('hidden');
+    document.getElementById('multiCountLabel').textContent = n + ' objek dipilih';
+    return;
+  }
   const isT = item.type === 'text', isI = item.type === 'image', isS = item.type === 'shape';
   document.getElementById('textEditControls').classList.toggle('hidden', !isT);
   document.getElementById('imageEditControls').classList.toggle('hidden', !isI);
@@ -842,72 +1007,143 @@ function updateEditorPanel() {
   document.getElementById('propRotation').value = Math.round(item.rotation || 0);
   document.getElementById('btnLock').innerText = item.locked ? '🔒 Buka Kunci' : '🔓 Kunci';
 }
-
 function updateSelectedProp(prop, val) {
-  if (state.selectedSide == null || state.selectedIndex < 0) return;
-  const item = state[state.selectedSide].items[state.selectedIndex];
-  if (!item) return;
-  item[prop] = val; renderSide(state.selectedSide);
+  if (state.selectedIndices.length === 0) return;
+  getSelectedItems().forEach(item => {
+    if (prop === 'bold' || prop === 'italic' || prop === 'shadow' || prop === 'fontSize' || prop === 'fontFamily' || prop === 'align' || prop === 'lineHeight' || prop === 'letterSpacing' || prop === 'fontScaleY' || prop === 'text' || prop === 'fill') {
+      if (item.type !== 'text') return;
+    }
+    item[prop] = val;
+  });
+  renderSide(state.selectedSide);
 }
 function updateSelectedImageWidth(w) {
-  const item = state[state.selectedSide]?.items[state.selectedIndex];
+  if (state.selectedIndices.length !== 1) return;
+  const item = state[state.selectedSide].items[state.selectedIndices[0]];
   if (!item || item.type !== 'image') return;
   const ratio = item.height / item.width;
   item.width = w; item.height = w * ratio;
   renderSide(state.selectedSide);
 }
 function toggleSelectedStyle(s) {
-  const item = state[state.selectedSide]?.items[state.selectedIndex];
-  if (!item) return; item[s] = !item[s]; renderSide(state.selectedSide);
+  if (state.selectedIndices.length === 0) return;
+  getSelectedItems().forEach(item => { if (item.type === 'text') item[s] = !item[s]; });
+  renderSide(state.selectedSide);
 }
 function toggleLock() {
-  const item = state[state.selectedSide]?.items[state.selectedIndex];
-  if (!item) return; item.locked = !item.locked; updateEditorPanel(); updateLayersList();
+  if (state.selectedIndices.length === 0) return;
+  const anyUnlocked = getSelectedItems().some(it => !it.locked);
+  getSelectedItems().forEach(it => it.locked = anyUnlocked);
+  updateEditorPanel(); updateLayersList();
 }
 
 // ===== ACTIONS =====
 function deleteSelected() {
-  if (state.selectedSide == null || state.selectedIndex < 0) return;
+  if (state.selectedIndices.length === 0) return;
   pushHistory();
-  state[state.selectedSide].items.splice(state.selectedIndex, 1);
-  state.selectedIndex = -1; state.selectedSide = null;
+  const sorted = [...state.selectedIndices].sort((a, b) => b - a);
+  sorted.forEach(i => state[state.selectedSide].items.splice(i, 1));
+  clearSelection();
   document.getElementById('editorProPanel').classList.add('hidden');
   renderAll(); updateLayersList();
 }
 function duplicateSelected() {
-  if (state.selectedSide == null || state.selectedIndex < 0) return;
+  if (state.selectedIndices.length === 0) return;
   pushHistory();
-  const item = state[state.selectedSide].items[state.selectedIndex];
-  const copy = deepCloneItems([item])[0];
-  copy.id = uid(); copy.x += 15; copy.y += 15;
-  state[state.selectedSide].items.push(copy);
-  state.selectedIndex = state[state.selectedSide].items.length - 1;
+  const items = state[state.selectedSide].items;
+  const newIndices = [];
+  const groupMap = {};
+  state.selectedIndices.forEach(i => {
+    const item = items[i];
+    if (!item) return;
+    const copy = deepCloneItems([item])[0];
+    copy.id = uid();
+    copy.x += 15; copy.y += 15;
+    // If item was in a group, put copy in a new group
+    if (item.groupId) {
+      if (!groupMap[item.groupId]) groupMap[item.groupId] = uid();
+      copy.groupId = groupMap[item.groupId];
+    } else copy.groupId = null;
+    items.push(copy);
+    newIndices.push(items.length - 1);
+  });
+  state.selectedIndices = newIndices;
+  syncSelectedIndex();
   updateEditorPanel(); renderAll(); updateLayersList();
 }
 function bringForward() {
-  if (state.selectedIndex < 0) return;
-  const items = state[state.selectedSide].items;
-  if (state.selectedIndex >= items.length - 1) return;
+  if (state.selectedIndices.length === 0) return;
   pushHistory();
-  [items[state.selectedIndex], items[state.selectedIndex+1]] = [items[state.selectedIndex+1], items[state.selectedIndex]];
-  state.selectedIndex++; renderAll(); updateLayersList();
+  const items = state[state.selectedSide].items;
+  if (state.selectedIndices.length === 1) {
+    const idx = state.selectedIndices[0];
+    if (idx >= items.length - 1) return;
+    [items[idx], items[idx+1]] = [items[idx+1], items[idx]];
+    state.selectedIndices = [idx + 1]; syncSelectedIndex();
+  } else {
+    const sel = state.selectedIndices.map(i => items[i]);
+    state.selectedIndices.sort((a, b) => b - a).forEach(i => items.splice(i, 1));
+    sel.forEach(it => items.push(it));
+    state.selectedIndices = items.slice(-sel.length).map((_, i) => items.length - sel.length + i);
+    syncSelectedIndex();
+  }
+  renderAll(); updateLayersList();
 }
 function sendBackward() {
-  if (state.selectedIndex <= 0) return;
-  const items = state[state.selectedSide].items;
+  if (state.selectedIndices.length === 0) return;
   pushHistory();
-  [items[state.selectedIndex], items[state.selectedIndex-1]] = [items[state.selectedIndex-1], items[state.selectedIndex]];
-  state.selectedIndex--; renderAll(); updateLayersList();
+  const items = state[state.selectedSide].items;
+  if (state.selectedIndices.length === 1) {
+    const idx = state.selectedIndices[0];
+    if (idx <= 0) return;
+    [items[idx], items[idx-1]] = [items[idx-1], items[idx]];
+    state.selectedIndices = [idx - 1]; syncSelectedIndex();
+  } else {
+    const sel = state.selectedIndices.map(i => items[i]);
+    state.selectedIndices.sort((a, b) => b - a).forEach(i => items.splice(i, 1));
+    sel.reverse().forEach((it, i) => items.unshift(it));
+    state.selectedIndices = sel.map((_, i) => i);
+    syncSelectedIndex();
+  }
+  renderAll(); updateLayersList();
 }
 function alignTo(mode) {
-  const item = state[state.selectedSide]?.items[state.selectedIndex];
-  if (!item) return;
-  computeBBox(item); pushHistory();
-  if (mode === 'left') item.x = 10;
-  else if (mode === 'right') item.x = 350 - item._bw;
-  else if (mode === 'center-h') item.x = (360 - item._bw)/2;
-  else if (mode === 'center-v') item.y = (540 - item._bh)/2;
+  if (state.selectedIndices.length === 0) return;
+  pushHistory();
+  const items = getSelectedItems();
+  if (items.length === 1) {
+    const item = items[0];
+    computeBBox(item);
+    if (mode === 'left') item.x = 10;
+    else if (mode === 'right') item.x = 350 - item._bw;
+    else if (mode === 'center-h') item.x = (360 - item._bw)/2;
+    else if (mode === 'center-v') item.y = (540 - item._bh)/2;
+  } else {
+    const bb = getCombinedBBox(items);
+    let targetMinX = bb.minX, targetMinY = bb.minY;
+    if (mode === 'left') targetMinX = 10;
+    else if (mode === 'right') targetMinX = 350 - bb.w;
+    else if (mode === 'center-h') targetMinX = (360 - bb.w)/2;
+    else if (mode === 'center-v') targetMinY = (540 - bb.h)/2;
+    const dx = targetMinX - bb.minX, dy = targetMinY - bb.minY;
+    items.forEach(it => { it.x += dx; it.y += dy; });
+  }
   renderAll(); updateEditorPanel();
+}
+
+// ===== GROUP =====
+function groupSelected() {
+  if (state.selectedIndices.length < 2) { alert('Pilih sekurang-kurangnya 2 objek untuk group.'); return; }
+  pushHistory();
+  const gid = uid();
+  getSelectedItems().forEach(it => { it.groupId = gid; });
+  updateEditorPanel(); updateLayersList(); renderAll();
+}
+function ungroupSelected() {
+  if (state.selectedIndices.length === 0) return;
+  pushHistory();
+  getSelectedItems().forEach(it => { it.groupId = null; });
+  updateEditorPanel(); updateLayersList(); renderAll();
 }
 
 // ===== LAYERS PANEL =====
@@ -926,18 +1162,23 @@ function updateLayersList() {
   if (!items.length) { list.innerHTML = '<div class="p-3 text-[10px] text-slate-400 text-center">Tiada elemen</div>'; return; }
   list.innerHTML = [...items].reverse().map((it, ri) => {
     const idx = items.length - 1 - ri;
-    const sel = state.selectedSide === side && state.selectedIndex === idx;
-    const label = it.type === 'text' ? ((it.text || '').substring(0,20) || '(kosong)') : it.type === 'image' ? '🖼 Gambar' : `⬛ ${it.shape || 'shape'}`;
-    return `<div class="layer-row ${sel ? 'sel' : ''}" onclick="selectItemByLayer('${side}',${idx})">
+    const sel = isSelected(side, idx);
+    const groupIcon = it.groupId ? '🔗 ' : '';
+    const label = it.type === 'text' ? ((it.text || '').substring(0,18) || '(kosong)') : it.type === 'image' ? '🖼 Gambar' : `⬛ ${it.shape || 'shape'}`;
+    return `<div class="layer-row ${sel ? 'sel' : ''}" onclick="selectItemByLayer(event, '${side}',${idx})">
       <button onclick="event.stopPropagation();toggleItemVisible('${side}',${idx})">${it.visible === false ? '🚫' : '👁'}</button>
       <button onclick="event.stopPropagation();toggleItemLock('${side}',${idx})">${it.locked ? '🔒' : '🔓'}</button>
-      <span class="flex-1 truncate">${escapeHtml(label)}</span>
+      <span class="flex-1 truncate">${groupIcon}${escapeHtml(label)}</span>
       <button onclick="event.stopPropagation();moveLayer('${side}',${idx},1)">⬆</button>
       <button onclick="event.stopPropagation();moveLayer('${side}',${idx},-1)">⬇</button>
     </div>`;
   }).join('');
 }
-function selectItemByLayer(side, idx) { state.selectedSide = side; state.selectedIndex = idx; updateEditorPanel(); updateLayersList(); renderAll(); }
+function selectItemByLayer(event, side, idx) {
+  if (event.shiftKey) { toggleSelect(side, idx); }
+  else { selectOnly(side, idx); }
+  updateEditorPanel(); updateLayersList(); renderAll();
+}
 function toggleItemVisible(side, idx) { pushHistory(); const it = state[side].items[idx]; it.visible = it.visible === false ? true : false; renderAll(); updateLayersList(); }
 function toggleItemLock(side, idx) { pushHistory(); const it = state[side].items[idx]; it.locked = !it.locked; updateEditorPanel(); updateLayersList(); }
 function moveLayer(side, idx, dir) {
@@ -946,7 +1187,10 @@ function moveLayer(side, idx, dir) {
   if (ni < 0 || ni >= items.length) return;
   pushHistory();
   [items[idx], items[ni]] = [items[ni], items[idx]];
-  if (state.selectedSide === side && state.selectedIndex === idx) state.selectedIndex = ni;
+  if (state.selectedSide === side) {
+    state.selectedIndices = state.selectedIndices.map(i => i === idx ? ni : (i === ni ? idx : i));
+    syncSelectedIndex();
+  }
   renderAll(); updateLayersList();
 }
 
@@ -962,13 +1206,15 @@ function mkText(opts) {
     bold: !!opts.bold, italic: !!opts.italic,
     align: opts.align || 'center', lineHeight: opts.lineHeight || 1.25,
     letterSpacing: opts.letterSpacing || 0, shadow: false,
-    rotation: 0, opacity: 1, visible: true, locked: false, fontScaleY: 1
+    rotation: 0, opacity: 1, visible: true, locked: false, fontScaleY: 1, groupId: null
   };
 }
 function addManualItem(side) {
   pushHistory();
   state[side].items.push(mkText({ text: 'Teks Baru', y: 250, fontSize: 16, bold: true }));
-  state.selectedSide = side; state.selectedIndex = state[side].items.length - 1;
+  state.selectedSide = side;
+  state.selectedIndices = [state[side].items.length - 1];
+  syncSelectedIndex();
   updateEditorPanel(); updateLayersList(); renderAll();
 }
 function addShape(shape) {
@@ -978,9 +1224,11 @@ function addShape(shape) {
     id: uid(), type: 'shape', shape,
     x: 100, y: 200, width: 120, height: 80,
     fill: '#4f46e5', strokeWidth: 3,
-    rotation: 0, opacity: 1, visible: true, locked: false
+    rotation: 0, opacity: 1, visible: true, locked: false, groupId: null
   });
-  state.selectedSide = side; state.selectedIndex = state[side].items.length - 1;
+  state.selectedSide = side;
+  state.selectedIndices = [state[side].items.length - 1];
+  syncSelectedIndex();
   updateEditorPanel(); updateLayersList(); renderAll();
 }
 function addQRCode() {
@@ -992,8 +1240,10 @@ function addQRCode() {
     img.onload = () => {
       pushHistory();
       const size = 90;
-      state.back.items.push({ id: uid(), type: 'image', imgObj: img, x: 25, y: 420, width: size, height: size, rotation: 0, opacity: 1, visible: true, locked: false });
-      state.selectedSide = 'back'; state.selectedIndex = state.back.items.length - 1;
+      state.back.items.push({ id: uid(), type: 'image', imgObj: img, imgSrc: dataUrl, x: 25, y: 420, width: size, height: size, rotation: 0, opacity: 1, visible: true, locked: false, groupId: null });
+      state.selectedSide = 'back';
+      state.selectedIndices = [state.back.items.length - 1];
+      syncSelectedIndex();
       updateEditorPanel(); updateLayersList(); renderAll();
     };
     img.src = dataUrl;
@@ -1017,7 +1267,7 @@ function toggleGrid() {
   renderAll();
 }
 
-// ===== BACKGROUND (WITH DELETE/REPLACE) =====
+// ===== BACKGROUND =====
 function handleBgUpload(event, side) {
   const f = event.target.files[0]; if (!f) return;
   const r = new FileReader();
@@ -1025,10 +1275,8 @@ function handleBgUpload(event, side) {
     const img = new Image();
     img.onload = () => {
       pushHistory();
-      state[side].bg = img;
-      state[side].bgSrc = e.target.result;
-      updateBgPreview(side);
-      renderSide(side);
+      state[side].bg = img; state[side].bgSrc = e.target.result;
+      updateBgPreview(side); renderSide(side);
     };
     img.src = e.target.result;
   };
@@ -1050,15 +1298,12 @@ function updateBgPreview(side) {
 }
 function deleteBg(side) {
   pushHistory();
-  state[side].bg = null;
-  state[side].bgSrc = null;
-  updateBgPreview(side);
-  renderSide(side);
+  state[side].bg = null; state[side].bgSrc = null;
+  updateBgPreview(side); renderSide(side);
 }
 function changeBg(side) {
   const input = document.getElementById(side === 'front' ? 'bgFrontInput' : 'bgBackInput');
-  input.classList.remove('hidden');
-  input.click();
+  input.classList.remove('hidden'); input.click();
 }
 function setBgColor(side, color) { pushHistory(); state[side].bgColor = color; renderSide(side); }
 function handleOverlayUpload(event) {
@@ -1069,8 +1314,10 @@ function handleOverlayUpload(event) {
     img.onload = () => {
       pushHistory();
       const tW = 110, tH = tW * (img.height / img.width);
-      state.back.items.push({ id: uid(), type: 'image', imgObj: img, x: 30, y: 420, width: tW, height: tH, rotation: 0, opacity: 1, visible: true, locked: false });
-      state.selectedSide = 'back'; state.selectedIndex = state.back.items.length - 1;
+      state.back.items.push({ id: uid(), type: 'image', imgObj: img, imgSrc: e.target.result, x: 30, y: 420, width: tW, height: tH, rotation: 0, opacity: 1, visible: true, locked: false, groupId: null });
+      state.selectedSide = 'back';
+      state.selectedIndices = [state.back.items.length - 1];
+      syncSelectedIndex();
       updateEditorPanel(); updateLayersList(); renderSide('back');
     };
     img.src = e.target.result;
@@ -1085,25 +1332,93 @@ function setMonochrome(isBlack) {
   renderAll();
 }
 
-// =========================================================================
-// ===== IMAGE STUDIO (NEW) =====
-// =========================================================================
-let imgStudio = {
-  originalImage: null,
-  originalBlob: null,
-  brushMode: null,
-  brushSize: 25,
-  tolerance: 30,
-  targetSide: 'back',
-  isDrawing: false
-};
-
-function handleImageStudioUpload(event) {
-  const f = event.target.files[0]; if (!f) return;
-  openImageStudio(f);
-  event.target.value = '';
+// ===== TEMPLATE PRESET =====
+function saveCurrentAsTemplate() {
+  const name = prompt('Nama template:', 'Template ' + new Date().toLocaleDateString('ms-MY'));
+  if (!name) return;
+  const serialize = side => ({
+    bgSrc: state[side].bgSrc,
+    bgColor: state[side].bgColor,
+    items: state[side].items.map(it => {
+      const c = { ...it };
+      delete c.imgObj;
+      delete c._lines; delete c._bx; delete c._by; delete c._bw; delete c._bh; delete c._bboxKey;
+      return c;
+    })
+  });
+  const tpl = {
+    id: uid(),
+    name,
+    createdAt: Date.now(),
+    front: serialize('front'),
+    back: serialize('back')
+  };
+  state.templates.push(tpl);
+  try {
+    localStorage.setItem('esk_templates', JSON.stringify(state.templates));
+    updateTemplateList();
+    alert('✅ Template "' + name + '" disimpan!');
+  } catch (e) {
+    alert('❌ Gagal simpan: ' + e.message + '\n(Storage mungkin penuh - cuba padam template lama)');
+  }
+}
+function loadTemplate(id) {
+  const tpl = state.templates.find(t => t.id === id);
+  if (!tpl) return;
+  if (!confirm('Muat template "' + tpl.name + '"?\nDesign semasa akan DIGANTIKAN.')) return;
+  pushHistory();
+  ['front', 'back'].forEach(side => {
+    const data = tpl[side];
+    state[side].items = [];
+    state[side].bgColor = data.bgColor;
+    state[side].bgSrc = data.bgSrc;
+    if (data.bgSrc) {
+      const img = new Image();
+      img.onload = () => { state[side].bg = img; renderSide(side); };
+      img.src = data.bgSrc;
+    } else { state[side].bg = null; }
+    data.items.forEach(it => {
+      const item = { ...it, id: uid() };
+      if (item.type === 'image' && item.imgSrc) {
+        const img = new Image();
+        img.onload = () => { item.imgObj = img; renderAll(); };
+        img.src = item.imgSrc;
+      }
+      state[side].items.push(item);
+    });
+  });
+  clearSelection();
+  updateBgPreview('front'); updateBgPreview('back');
+  updateEditorPanel(); updateLayersList(); renderAll();
+}
+function deleteTemplate(id) {
+  if (!confirm('Padam template ini?')) return;
+  state.templates = state.templates.filter(t => t.id !== id);
+  localStorage.setItem('esk_templates', JSON.stringify(state.templates));
+  updateTemplateList();
+}
+function updateTemplateList() {
+  const list = document.getElementById('templateList');
+  if (!list) return;
+  if (!state.templates.length) { list.innerHTML = '<div class="p-2 text-[10px] text-slate-400 text-center">Tiada template</div>'; return; }
+  list.innerHTML = state.templates.map(t => `
+    <div class="tpl-card">
+      <div class="flex-1 truncate">
+        <div class="font-bold text-slate-700">${escapeHtml(t.name)}</div>
+        <div class="text-[9px] text-slate-400">${new Date(t.createdAt).toLocaleDateString('ms-MY')}</div>
+      </div>
+      <button onclick="loadTemplate('${t.id}')" class="btn-tool" style="padding:2px 6px">📂</button>
+      <button onclick="deleteTemplate('${t.id}')" class="btn-tool" style="padding:2px 6px;color:#e11d48">🗑</button>
+    </div>
+  `).join('');
 }
 
+// ===== IMAGE STUDIO =====
+let imgStudio = { originalImage: null, originalBlob: null, brushMode: null, brushSize: 25, tolerance: 30, isDrawing: false };
+function handleImageStudioUpload(event) {
+  const f = event.target.files[0]; if (!f) return;
+  openImageStudio(f); event.target.value = '';
+}
 function openImageStudio(file) {
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -1112,38 +1427,30 @@ function openImageStudio(file) {
       imgStudio.originalImage = img;
       imgStudio.originalBlob = dataURLtoBlob(e.target.result);
       imgStudio.brushMode = null;
-
-      // Fit into max 600px canvas
       const maxDim = 600;
-      let w = img.width, h = img.height;
-      const scale = Math.min(1, maxDim / Math.max(w, h));
-      w = Math.round(w * scale); h = Math.round(h * scale);
-
+      const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+      const w = Math.round(img.width * scale), h = Math.round(img.height * scale);
       const canvas = document.getElementById('imgStudioCanvas');
       canvas.width = w; canvas.height = h;
       const ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, w, h);
       ctx.drawImage(img, 0, 0, w, h);
-
-      // Brush events
       canvas.onpointerdown = imgStudioPointerDown;
       canvas.onpointermove = imgStudioPointerMove;
       canvas.onpointerup = () => { imgStudio.isDrawing = false; };
       canvas.onpointerleave = () => { imgStudio.isDrawing = false; };
-
       document.getElementById('imgTolerance').value = 30;
       document.getElementById('imgToleranceVal').textContent = '30';
       document.getElementById('imgBrushSize').value = 25;
       document.getElementById('imgBrushSizeVal').textContent = '25';
       document.getElementById('imgBrushBtn').classList.remove('active');
-      document.getElementById('imgStudioHint').textContent = 'Guna "Magic Remove BG" dulu untuk latar warna, atau "AI" untuk gambar kompleks. Brush untuk halus.';
+      document.getElementById('imgStudioHint').textContent = 'Magic untuk latar warna, AI untuk complex, Brush untuk halus.';
       document.getElementById('imgStudioModal').classList.remove('hidden');
     };
     img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
-
 function dataURLtoBlob(dataURL) {
   const arr = dataURL.split(',');
   const mime = arr[0].match(/:(.*?);/)[1];
@@ -1153,24 +1460,17 @@ function dataURLtoBlob(dataURL) {
   while (n--) u8arr[n] = bstr.charCodeAt(n);
   return new Blob([u8arr], { type: mime });
 }
-
 function imgStudioClose() {
   document.getElementById('imgStudioModal').classList.add('hidden');
-  imgStudio.originalImage = null;
-  imgStudio.originalBlob = null;
-  imgStudio.brushMode = null;
+  imgStudio.originalImage = null; imgStudio.originalBlob = null; imgStudio.brushMode = null;
 }
-
 function imgStudioReset() {
   if (!imgStudio.originalImage) return;
   const canvas = document.getElementById('imgStudioCanvas');
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(imgStudio.originalImage, 0, 0, canvas.width, canvas.height);
-  document.getElementById('imgStudioHint').textContent = 'Reset ke imej asal.';
 }
-
-// ---- MAGIC REMOVE BG (color-based flood fill from corners) ----
 function imgStudioMagic() {
   const tol = parseInt(document.getElementById('imgTolerance').value) || 30;
   imgStudio.tolerance = tol;
@@ -1179,82 +1479,48 @@ function imgStudioMagic() {
   const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   smartRemoveBackground(imgData, tol);
   ctx.putImageData(imgData, 0, 0);
-  document.getElementById('imgStudioHint').textContent = `Magic Remove BG selesai (Toleransi: ${tol}). Kalau masih ada sisa, naikkan toleransi atau guna Brush.`;
+  document.getElementById('imgStudioHint').textContent = `Magic Remove BG selesai (Tol: ${tol}).`;
 }
-
 function smartRemoveBackground(imageData, tolerance) {
   const { data, width, height } = imageData;
-  if (!data || !width || !height) return;
-
-  // Sample corner colors
-  const corners = [
-    [0, 0], [width - 1, 0], [0, height - 1], [width - 1, height - 1]
-  ];
-  const sample = (x, y) => {
-    const i = (y * width + x) * 4;
-    return [data[i], data[i + 1], data[i + 2]];
-  };
-  const cornerColors = corners.map(([x, y]) => sample(x, y));
-
-  // Flood fill BFS from all 4 corners
-  const visited = new Uint8Array(width * height);
+  const corners = [[0,0],[width-1,0],[0,height-1],[width-1,height-1]];
+  const sample = (x,y) => { const i = (y*width+x)*4; return [data[i], data[i+1], data[i+2]]; };
+  const cornerColors = corners.map(([x,y]) => sample(x,y));
+  const visited = new Uint8Array(width*height);
   const queue = [];
-  corners.forEach(([x, y]) => {
-    const idx = y * width + x;
-    if (!visited[idx]) { visited[idx] = 1; queue.push([x, y]); }
-  });
-
-  const tolSq = tolerance * tolerance * 3;
-  const isSimilar = (px, py, ref) => {
-    const i = (py * width + px) * 4;
-    const dr = data[i] - ref[0];
-    const dg = data[i + 1] - ref[1];
-    const db = data[i + 2] - ref[2];
-    return (dr * dr + dg * dg + db * db) <= tolSq;
+  corners.forEach(([x,y]) => { const idx = y*width+x; if (!visited[idx]) { visited[idx]=1; queue.push([x,y]); } });
+  const tolSq = tolerance*tolerance*3;
+  const isSimilar = (px,py,ref) => {
+    const i = (py*width+px)*4;
+    const dr = data[i]-ref[0], dg = data[i+1]-ref[1], db = data[i+2]-ref[2];
+    return dr*dr + dg*dg + db*db <= tolSq;
   };
-
   while (queue.length) {
-    const [x, y] = queue.pop();
-    // Find which corner color is closest / match any
+    const [x,y] = queue.pop();
     let matched = false;
-    for (const ref of cornerColors) {
-      if (isSimilar(x, y, ref)) { matched = true; break; }
-    }
+    for (const ref of cornerColors) { if (isSimilar(x,y,ref)) { matched = true; break; } }
     if (!matched) continue;
-
-    const i = (y * width + x) * 4;
-    data[i + 3] = 0; // transparent
-
-    // 4-connected neighbors
-    const neighbors = [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]];
-    for (const [nx, ny] of neighbors) {
-      if (nx < 0 || nx >= width || ny < 0 || ny >= height) continue;
-      const nidx = ny * width + nx;
-      if (visited[nidx]) continue;
-      visited[nidx] = 1;
-      queue.push([nx, ny]);
-    }
+    data[(y*width+x)*4+3] = 0;
+    [[x-1,y],[x+1,y],[x,y-1],[x,y+1]].forEach(([nx,ny]) => {
+      if (nx<0||nx>=width||ny<0||ny>=height) return;
+      const nidx = ny*width+nx;
+      if (!visited[nidx]) { visited[nidx]=1; queue.push([nx,ny]); }
+    });
   }
 }
-
-// ---- AI REMOVE BG (imgly, smart) ----
 async function imgStudioAI() {
-  if (!imgStudio.originalBlob) { alert('Tiada imej.'); return; }
+  if (!imgStudio.originalBlob) return;
   const btn = document.getElementById('imgAiBtn');
   const hint = document.getElementById('imgStudioHint');
-  const originalText = btn.innerHTML;
+  const orig = btn.innerHTML;
   btn.innerHTML = '<span class="spin inline-block">⏳</span> Memuatkan AI...';
   btn.disabled = true;
-  hint.textContent = 'Memuatkan model AI... Kali pertama perlu ~50MB. Seterusnya di-cache (offline).';
-
+  hint.textContent = 'Memuatkan model AI... (~50MB pertama kali, kemudian offline).';
   try {
     const { removeBackground } = await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/dist/index.mjs');
-    hint.textContent = 'AI sedang memproses... Sila tunggu (20–60 detik).';
+    hint.textContent = 'AI memproses... 20-60 detik.';
     const blob = await removeBackground(imgStudio.originalBlob, {
-      progress: (key, current, total) => {
-        const pct = total ? Math.round(current / total * 100) : 0;
-        hint.textContent = `AI: ${key} ${pct}%`;
-      }
+      progress: (k, c, t) => { hint.textContent = `AI: ${k} ${t?Math.round(c/t*100):0}%`; }
     });
     const url = URL.createObjectURL(blob);
     const img = new Image();
@@ -1264,55 +1530,33 @@ async function imgStudioAI() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       URL.revokeObjectURL(url);
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-      hint.textContent = '✅ AI Remove BG berjaya! Guna Brush untuk halus jika perlu.';
+      btn.innerHTML = orig; btn.disabled = false;
+      hint.textContent = '✅ AI berjaya!';
     };
     img.src = url;
   } catch (err) {
-    console.error(err);
-    alert('AI gagal dimuatkan.\n\nKemungkinan:\n1. Tiada internet (kali pertama perlu internet)\n2. Pelayar terlalu lama\n3. Server CDN down\n\nGuna "Magic Remove BG" sebagai alternatif (100% offline).\n\nRalat: ' + err.message);
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    hint.textContent = 'AI gagal. Sila guna Magic Remove BG.';
+    alert('AI gagal: ' + err.message + '\n\nGuna "Magic Remove BG" sebagai alternatif.');
+    btn.innerHTML = orig; btn.disabled = false;
   }
 }
-
-// ---- BRUSH ERASE ----
 function imgStudioToggleBrush() {
   imgStudio.brushMode = imgStudio.brushMode === 'erase' ? null : 'erase';
   const btn = document.getElementById('imgBrushBtn');
   btn.classList.toggle('active', imgStudio.brushMode === 'erase');
-  btn.textContent = imgStudio.brushMode === 'erase' ? '🖌 Brush Aktif (Klik Kanvas)' : '🖌 Brush Padam (Manual)';
-  document.getElementById('imgStudioHint').textContent = imgStudio.brushMode === 'erase'
-    ? 'Klik & seret pada kanvas untuk padam bahagian yang tidak diingini.'
-    : 'Brush dimatikan.';
+  btn.textContent = imgStudio.brushMode === 'erase' ? '🖌 Brush Aktif' : '🖌 Brush Padam';
 }
-
-function imgStudioPointerDown(e) {
-  if (imgStudio.brushMode !== 'erase') return;
-  imgStudio.isDrawing = true;
-  imgStudioEraseAt(e);
-}
-function imgStudioPointerMove(e) {
-  if (!imgStudio.isDrawing || imgStudio.brushMode !== 'erase') return;
-  imgStudioEraseAt(e);
-}
+function imgStudioPointerDown(e) { if (imgStudio.brushMode !== 'erase') return; imgStudio.isDrawing = true; imgStudioEraseAt(e); }
+function imgStudioPointerMove(e) { if (!imgStudio.isDrawing || imgStudio.brushMode !== 'erase') return; imgStudioEraseAt(e); }
 function imgStudioEraseAt(e) {
   const canvas = document.getElementById('imgStudioCanvas');
   const rect = canvas.getBoundingClientRect();
   const x = (e.clientX - rect.left) * (canvas.width / rect.width);
   const y = (e.clientY - rect.top) * (canvas.height / rect.height);
   const ctx = canvas.getContext('2d');
-  ctx.save();
-  ctx.globalCompositeOperation = 'destination-out';
-  ctx.beginPath();
-  ctx.arc(x, y, imgStudio.brushSize, 0, Math.PI * 2);
-  ctx.fill();
+  ctx.save(); ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath(); ctx.arc(x, y, imgStudio.brushSize, 0, Math.PI*2); ctx.fill();
   ctx.restore();
 }
-
-// ---- ADD TO CARD ----
 function imgStudioAddToCard() {
   const canvas = document.getElementById('imgStudioCanvas');
   const sideEl = document.querySelector('input[name="imgSide"]:checked');
@@ -1321,49 +1565,39 @@ function imgStudioAddToCard() {
   const img = new Image();
   img.onload = () => {
     pushHistory();
-    const targetW = 120;
-    const targetH = targetW * (img.height / img.width);
+    const targetW = 120, targetH = targetW * (img.height / img.width);
     const makeItem = () => ({
-      id: uid(), type: 'image', imgObj: img,
-      x: (360 - targetW) / 2, y: (540 - targetH) / 2,
-      width: targetW, height: targetH,
-      rotation: 0, opacity: 1, visible: true, locked: false
+      id: uid(), type: 'image', imgObj: img, imgSrc: dataUrl,
+      x: (360-targetW)/2, y: (540-targetH)/2, width: targetW, height: targetH,
+      rotation: 0, opacity: 1, visible: true, locked: false, groupId: null
     });
     if (targetSide === 'both') {
       state.front.items.push(makeItem());
       state.back.items.push(makeItem());
       state.selectedSide = 'front';
-      state.selectedIndex = state.front.items.length - 1;
+      state.selectedIndices = [state.front.items.length - 1];
     } else {
       state[targetSide].items.push(makeItem());
       state.selectedSide = targetSide;
-      state.selectedIndex = state[targetSide].items.length - 1;
+      state.selectedIndices = [state[targetSide].items.length - 1];
     }
+    syncSelectedIndex();
     imgStudioClose();
     updateEditorPanel(); updateLayersList(); renderAll();
   };
   img.src = dataUrl;
 }
 
-// =========================================================================
-// ===== FONT DETECTION (NEW) =====
-// =========================================================================
+// ===== FONT DETECTION =====
 async function detectLocalFonts() {
   const status = document.getElementById('fontDetectStatus');
-  if (!window.queryLocalFonts) {
-    alert('Pelayar anda tidak menyokong Local Font Access API.\n\nSila guna Google Chrome atau Microsoft Edge (versi terkini).');
-    return;
-  }
+  if (!window.queryLocalFonts) { alert('Chrome/Edge sahaja menyokong ciri ini.'); return; }
   try {
     status.classList.remove('hidden');
     status.textContent = '⏳ Meminta kebenaran...';
     const fonts = await window.queryLocalFonts();
     const families = [...new Set(fonts.map(f => f.family))].sort((a, b) => a.localeCompare(b));
-    if (!families.length) {
-      status.textContent = '❌ Tiada font dikesan.';
-      return;
-    }
-    // Add to dropdown under new optgroup
+    if (!families.length) { status.textContent = '❌ Tiada font dikesan.'; return; }
     const select = document.getElementById('propFont');
     const existing = select.querySelector('optgroup[label="Font Komputer Anda"]');
     if (existing) existing.remove();
@@ -1371,31 +1605,17 @@ async function detectLocalFonts() {
     optgroup.label = 'Font Komputer Anda';
     families.forEach(f => {
       const opt = document.createElement('option');
-      opt.value = f;
-      opt.textContent = f;
+      opt.value = f; opt.textContent = f;
       optgroup.appendChild(opt);
     });
     select.appendChild(optgroup);
-    status.textContent = `✅ ${families.length} font dijumpai dan ditambah ke dropdown!`;
-    status.classList.remove('hidden');
-    // Auto-load first font to ensure canvas ready
-    setTimeout(() => {
-      families.slice(0, 20).forEach(f => {
-        try { document.fonts.load(`12px "${f}"`); } catch (e) {}
-      });
-    }, 100);
+    status.textContent = `✅ ${families.length} font dijumpai!`;
   } catch (err) {
-    status.textContent = '❌ Gagal: ' + err.message;
-    console.error(err);
-    if (err.name === 'NotAllowedError') {
-      alert('Kebenaran ditolak. Sila muat semula halaman dan benarkan akses font.');
-    }
+    status.textContent = '❌ ' + err.message;
   }
 }
 
-// =========================================================================
 // ===== AUTO LAYOUT =====
-// =========================================================================
 function populateBothCards(data) {
   const parts = (data.nick || '').split('&');
   const i1 = parts[0] ? parts[0].trim().charAt(0).toUpperCase() : 'A';
@@ -1420,9 +1640,9 @@ function populateBothCards(data) {
   const phones = [data.fon1, data.fon2, data.fon3, data.fon4].filter(f => f && f.trim()).join('\n');
   items.push(mkText({ text: `NO FON DIHUBUNGI:\n${phones}`, x: 20, y: 440, width: 320, fontSize: 8, bold: true, align: 'left' }));
   state.back.items = items;
+  clearSelection();
   renderAll(); updateLayersList();
 }
-
 function autoLayoutFromWhatsApp() {
   pushHistory();
   const raw = document.getElementById('d_input_data').value;
@@ -1501,7 +1721,6 @@ function export300DPIPreview() {
   link.download = `ESKPRINT-300DPI-${(currentOrderData.nick||'KAD').replace(/\s+/g, '_')}.png`;
   link.href = out.toDataURL('image/png'); link.click();
 }
-
 function copyFinalWhatsAppMessage() {
   const names = currentOrderData.nick.split('&');
   const n1 = names[0] ? names[0].trim().toUpperCase() : 'PENGANTIN 1';
@@ -1515,7 +1734,7 @@ function copyFinalWhatsAppMessage() {
     `Ingin menjemput dato/datin/tuan/puan/encik/cik suami/isteri ke majlis perkahwinan anakanda kami spt yg berikut:\n\n` +
     `                   ${n1}\n                      ❤️ \n                  ${n2}\n\n` +
     `Utk lokasi majlis:\n📍${currentOrderData.map}`;
-  navigator.clipboard.writeText(msg).then(() => alert('Ayat jemputan WhatsApp disalin!'));
+  navigator.clipboard.writeText(msg).then(() => alert('Ayat disalin!'));
 }
 
 // ===== FORM / TABS =====
@@ -1548,42 +1767,50 @@ function switchTab(tab) {
 }
 function saveSettings() { localStorage.setItem('esk_wa', document.getElementById('setting_wa').value); alert('Tetapan disimpan!'); }
 
-// ===== KEYBOARD (ENHANCED) =====
+// ===== KEYBOARD =====
 document.addEventListener('keydown', (e) => {
-  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+  if (['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)) return;
 
-  // Global shortcuts (work even without selection)
   if (e.ctrlKey || e.metaKey) {
     if (e.key === 'z' && e.shiftKey) { e.preventDefault(); redo(); return; }
     if (e.key === 'z') { e.preventDefault(); undo(); return; }
     if (e.key === 'y') { e.preventDefault(); redo(); return; }
-    if (e.key === 'g') { e.preventDefault(); toggleGrid(); return; }
+    if (e.key === 'g' && e.shiftKey) { e.preventDefault(); ungroupSelected(); return; }
+    if (e.key === 'g') { e.preventDefault(); groupSelected(); return; }
+    if (e.key === 'd') { e.preventDefault(); duplicateSelected(); return; }
+    if (e.key === 'a') { e.preventDefault();
+      if (state.layersSide) {
+        state.selectedSide = state.layersSide;
+        state.selectedIndices = state[state.layersSide].items.map((_, i) => i);
+        syncSelectedIndex();
+        updateEditorPanel(); updateLayersList(); renderAll();
+      }
+      return;
+    }
     if (e.key === '0') { e.preventDefault(); setZoom(1); return; }
     if (e.key === '=' || e.key === '+') { e.preventDefault(); setZoom(state.zoom + 0.1); return; }
     if (e.key === '-') { e.preventDefault(); setZoom(state.zoom - 0.1); return; }
   }
 
   if (e.key === 'Escape') {
-    state.selectedSide = null; state.selectedIndex = -1;
+    clearSelection();
     document.getElementById('editorProPanel').classList.add('hidden');
     renderAll(); updateLayersList(); return;
   }
 
-  if (state.selectedIndex < 0) return;
-  const item = state[state.selectedSide]?.items[state.selectedIndex];
-  if (!item) return;
-
+  if (state.selectedIndices.length === 0) return;
   if (e.key === 'Delete' || e.key === 'Backspace') { e.preventDefault(); deleteSelected(); return; }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault(); duplicateSelected(); return; }
 
   if (e.key.startsWith('Arrow')) {
     e.preventDefault();
     const step = e.shiftKey ? 10 : 1;
     pushHistory();
-    if (e.key === 'ArrowLeft') item.x -= step;
-    if (e.key === 'ArrowRight') item.x += step;
-    if (e.key === 'ArrowUp') item.y -= step;
-    if (e.key === 'ArrowDown') item.y += step;
+    getSelectedItems().forEach(item => {
+      if (e.key === 'ArrowLeft') item.x -= step;
+      if (e.key === 'ArrowRight') item.x += step;
+      if (e.key === 'ArrowUp') item.y -= step;
+      if (e.key === 'ArrowDown') item.y += step;
+    });
     renderSide(state.selectedSide);
   }
 });
@@ -1591,6 +1818,9 @@ document.addEventListener('keydown', (e) => {
 // ===== INIT =====
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('esk_wa')) document.getElementById('setting_wa').value = localStorage.getItem('esk_wa');
+  try { state.templates = JSON.parse(localStorage.getItem('esk_templates') || '[]'); }
+  catch (e) { state.templates = []; }
+  updateTemplateList();
   attachCanvasEvents('front');
   attachCanvasEvents('back');
   setZoom(1);
